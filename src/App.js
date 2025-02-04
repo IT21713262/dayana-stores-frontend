@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SupplierDashboard from "./Components/Suppliers/SupplierDashboard";
+import AddSupplier from "./Components/Suppliers/addSuppliers";
+import SupplierTransactions from "./Components/Suppliers/SupplierTransactions"; 
+import AddTransaction from "./Components/Suppliers/AddTransaction";
+import GenerateReport from "./Components/Suppliers/GenerateReport";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/supplierDashboard" element={<SupplierDashboard />} />
+        <Route path="/addSuppliers" element={<AddSupplier />} />
+        <Route path="/transactions" element={<SupplierTransactions />} />
+        <Route path="/addTransaction" element={<AddTransaction />} />
+        <Route path="/generateReport" element={<GenerateReport />} />
+        <Route path="/" element={<SupplierDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+
+
