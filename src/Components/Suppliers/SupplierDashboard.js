@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import NavBar from '../NavBar'
+
 
 export default function SupplierDashboard() {
   const [supplierCount, setSupplierCount] = useState(0);
@@ -20,6 +22,8 @@ export default function SupplierDashboard() {
   }, []);
 
   return (
+    <>
+    <NavBar/>
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h2 style={{ color: "#54B168", marginBottom: "20px" }}>
         Supplier Dashboard
@@ -58,7 +62,7 @@ export default function SupplierDashboard() {
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <button 
-          onClick={() => navigate("/addSupplier")} 
+          onClick={() => navigate("/addSuppliers")} 
           style={{
             backgroundColor: "#54B168",
             color: "white",
@@ -98,5 +102,6 @@ export default function SupplierDashboard() {
         </button>
       </div>
     </div>
+    </>
   );
 }
