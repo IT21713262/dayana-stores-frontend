@@ -1,0 +1,86 @@
+.dashboard-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .section-container {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    color: #54B168;
+  }
+  
+  .search-add-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .action-button {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .add-button {
+    background-color: #54B168;
+  }
+  
+  .table-style {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .table-style th, .table-style td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table-style th {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .edit-button {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 5px;
+  }
+  
+  .view-button {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #2196F3;
+    color: white;
+    margin-right: 5px;
+  }
+  
+  .delete-button {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #f44336;
+    color: white;
+  }
+  

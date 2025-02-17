@@ -1,0 +1,70 @@
+/* Main container styling */
+.container {
+    padding: 30px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Supplier card styling */
+  .supplier-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    margin: 20px;
+  }
+  
+  /* Heading and titles styling */
+  .page-title {
+    color: #54B168;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.2em;
+  }
+  
+  .supplier-name {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+  
+  /* Information section styling */
+  .supplier-info p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .supplier-info strong {
+    color: #333;
+  }
+  
+  /* Back button styling */
+  .back-button-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .back-button {
+    background-color: #54B168;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+  }
+  
+  .back-button:hover {
+    background-color: #45a156;
+  }
+  
