@@ -1,107 +1,166 @@
-import React, { useEffect, useState } from "react";
+// src/Components/Suppliers/SupplierDashboard.js
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import NavBar from '../NavBar'
+
+import "./SupplierDashboard.css";
 
 
 export default function SupplierDashboard() {
-  const [supplierCount, setSupplierCount] = useState(0);
-  const [recentSuppliers, setRecentSuppliers] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
+  const [supplierSearch, setSupplierSearch] = useState("");
+  const [transactions, setTransactions] = useState([]);
+  const [transactionSearch, setTransactionSearch] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Get all suppliers; adjust this call if your API differs
-    axios.get("/api/suppliers")
-      .then(res => {
-        const suppliers = res.data;
-        setSupplierCount(suppliers.length);
-        // Assume the most recent 5 suppliers (last 5 in the array)
-        setRecentSuppliers(suppliers.slice(-5).reverse());
-      })
-      .catch(err => console.error("Error fetching suppliers:", err));
+    fetchSuppliers();
   }, []);
+  
+  const fetchSuppliers = () => {
+    axios.get("/api/suppliers")
+      .then((res) => setSuppliers(res.data))
+      .catch(err => console.error("Error fetching suppliers:", err));
+  };
+
+  const filteredSuppliers = suppliers.filter(supplier =>
+    supplier.supplierName.toLowerCase().includes(supplierSearch.toLowerCase()) ||
+    supplier.productCategory.toLowerCase().includes(supplierSearch.toLowerCase())
+  );
+
+  const filteredTransactions = transactions.filter(tx =>
+    tx.supplierName.toLowerCase().includes(transactionSearch.toLowerCase()) ||
+    tx.product.toLowerCase().includes(transactionSearch.toLowerCase())
+  );
+
+  const handleEditSupplier = (id) => navigate(`/updateSuppliers/${id}`);
+  const handleViewSupplier = (id) => navigate(`/viewSupplier/${id}`);
+  
+  const handleDeleteSupplier = id => {
+    if (window.confirm("Are you sure you want to delete this supplier?")) {
+      axios.delete(`/api/suppliers/${id}`)
+        .then(() => setSuppliers(suppliers.filter(s => s.supplierId !== id)))
+        .catch(err => console.error(err));
+    }
+  };
+
+  const handleViewTransaction = id => navigate(`/viewTransaction/${id}`);
+  const handleDeleteTransaction = id => {
+    if (window.confirm("Are you sure you want to delete this transaction?")) {
+      axios.delete(`/api/transactions/${id}`)
+        .then(() => setTransactions(transactions.filter(t => t.id !== id)))
+        .catch(err => console.error(err));
+    }
+  };
 
   return (
-    <>
-    <NavBar/>
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h2 style={{ color: "#54B168", marginBottom: "20px" }}>
-        Supplier Dashboard
-      </h2>
-      <div style={{ marginBottom: "20px" }}>
-        <div style={{
-          padding: "10px",
-          border: "1px solid #ccc",
-          borderRadius: "8px",
-          width: "250px",
-          textAlign: "center",
-          margin: "auto"
-        }}>
-          <h3>Total Suppliers</h3>
-          <p style={{ fontSize: "24px", color: "#54B168" }}>{supplierCount}</p>
+
+    <div className="dashboard-container">
+      {/* Suppliers Section */}
+      <div className="section-container">
+        <h2 className="section-title">Suppliers</h2>
+        <div className="search-add-container">
+          <input 
+            type="text"
+            placeholder="Search suppliers..."
+            value={supplierSearch}
+            onChange={(e) => setSupplierSearch(e.target.value)}
+            className="search-input"
+          />
+          <div>
+            <button onClick={() => navigate("/addSuppliers")} className="action-button add-button">
+              Add Supplier
+            </button>
+            <button onClick={() => navigate("/supplierReport")} className="action-button add-button">
+              Generate Report
+            </button>
+          </div>
+
         </div>
-      </div>
-      <div style={{ marginBottom: "30px" }}>
-        <h3>Recent Suppliers</h3>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table className="table-style">
           <thead>
-            <tr style={{ borderBottom: "2px solid #54B168" }}>
-              <th style={{ padding: "8px" }}>Name</th>
-              <th style={{ padding: "8px" }}>Category</th>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Category</th>
+              <th>Products Supplied</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {recentSuppliers.map(supplier => (
-              <tr key={supplier.id} style={{ borderBottom: "1px solid #ccc" }}>
-                <td style={{ padding: "8px" }}>{supplier.name}</td>
-                <td style={{ padding: "8px" }}>{supplier.category}</td>
+            {filteredSuppliers.map(supplier => (
+              <tr key={supplier.supplierId}>
+                <td>{supplier.supplierName}</td>
+                <td>{supplier.supplierAddress}</td>
+                <td>{supplier.supplierPhone}</td>
+                <td>{supplier.supplierEmail}</td>
+                <td>{supplier.productCategory}</td>
+                <td>{supplier.productsSupplied}</td>
+                <td>
+                  <button onClick={() => handleEditSupplier(supplier.supplierId)} className="edit-button">Edit</button>
+                  <button onClick={() => handleViewSupplier(supplier.supplierId)} className="view-button">View</button>
+                  <button onClick={() => handleDeleteSupplier(supplier.supplierId)} className="delete-button">Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <button 
-          onClick={() => navigate("/addSuppliers")} 
-          style={{
-            backgroundColor: "#54B168",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            padding: "10px 20px",
-            cursor: "pointer"
-          }}
-        >
-          Add Supplier
-        </button>
-        <button 
-          onClick={() => navigate("/viewSuppliers")} 
-          style={{
-            backgroundColor: "#54B168",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            padding: "10px 20px",
-            cursor: "pointer"
-          }}
-        >
-          View Suppliers
-        </button>
-        <button 
-          onClick={() => navigate("/searchSuppliers")} 
-          style={{
-            backgroundColor: "#54B168",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            padding: "10px 20px",
-            cursor: "pointer"
-          }}
-        >
-          Search Suppliers
-        </button>
+
+
+      {/* Supplier Transactions Section */}
+      <div className="section-container">
+        <h2 className="section-title">Supplier Transactions</h2>
+        <div className="search-add-container">
+          <input 
+            type="text"
+            placeholder="Search transactions..."
+            value={transactionSearch}
+            onChange={(e) => setTransactionSearch(e.target.value)}
+            className="search-input"
+          />
+          <div>
+            <button onClick={() => navigate("/addTransaction")} className="action-button add-button">
+              Add Transaction
+            </button>
+            <button onClick={() => navigate("/transactionReport")} className="action-button add-button">
+              Generate Report
+            </button>
+          </div>
+        </div>
+        <table className="table-style">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Supplier Name</th>
+              <th>Product</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredTransactions.map(tx => (
+              <tr key={tx.id}>
+                <td>{tx.id}</td>
+                <td>{tx.supplierName}</td>
+                <td>{tx.product}</td>
+                <td>{tx.amount}</td>
+                <td>{tx.date}</td>
+                <td>
+                  <button onClick={() => handleViewTransaction(tx.id)} className="edit-button">Edit</button>
+                  <button onClick={() => handleViewTransaction(tx.id)} className="view-button">View</button>
+                  <button onClick={() => handleDeleteTransaction(tx.id)} className="delete-button">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
       </div>
     </div>
-    </>
+    
   );
 }

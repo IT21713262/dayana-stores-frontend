@@ -1,12 +1,14 @@
 // src/App.js
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SupplierDashboard from "./Components/Suppliers/SupplierDashboard";
 import AddSupplier from "./Components/Suppliers/addSuppliers";
-import SupplierTransactions from "./Components/Suppliers/SupplierTransactions"; 
+import UpdateSupplier from "./Components/Suppliers/updateSuppliers";
+import SupplierTransactions from "./Components/Suppliers/SupplierTransactions";
 import AddTransaction from "./Components/Suppliers/AddTransaction";
-import GenerateReport from "./Components/Suppliers/GenerateReport";
-import * as Inventory from "./Components/Inventory/InventoryRoutes";
+import SupplierReport from "./Components/Suppliers/SupplierReport";
+import ViewSupplier from "./Components/Suppliers/viewSupplier";
+
 
 function App() {
   return (
@@ -15,13 +17,13 @@ function App() {
         {/*supplier routes*/}
         <Route path="/supplierDashboard" element={<SupplierDashboard />} />
         <Route path="/addSuppliers" element={<AddSupplier />} />
+        <Route path="/updateSuppliers/:id" element={<UpdateSupplier />} />
         <Route path="/transactions" element={<SupplierTransactions />} />
         <Route path="/addTransaction" element={<AddTransaction />} />
-        <Route path="/generateReport" element={<GenerateReport />} />
-        <Route path="/" element={<SupplierDashboard />} />
 
-        {/*inventory routes */}
-        <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />
+        <Route path="/supplierReport" element={<SupplierReport />} />
+        <Route path="/viewSupplier/:id" element={<ViewSupplier />} />
+        <Route path="/" element={<SupplierDashboard />} /> {/* Default route */}
 
       </Routes>
     </Router>
@@ -29,5 +31,3 @@ function App() {
 }
 
 export default App;
-
-
