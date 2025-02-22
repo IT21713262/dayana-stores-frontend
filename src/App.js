@@ -10,6 +10,12 @@ import SupplierReport from "./Components/Suppliers/SupplierReport";
 import ViewSupplier from "./Components/Suppliers/viewSupplier";
 
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
+import GenerateReport from "./Components/Suppliers/GenerateReport";
+import * as Inventory from "./Components/Inventory/InventoryRoutes";
+import EmployeeDashboard from "./Components/Employee/EmployeeDashboard";
+import AddEmployee from "./Components/Employee/AddEmployee";
+import ViewEmployee from "./Components/Employee/ViewEmployee";
+import EditEmployee from "./Components/Employee/EditEmployee";
 
 function App() {
   return (
@@ -28,6 +34,12 @@ function App() {
 
         {/*Orders*/}
        <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
+
+         {/*Employee routes */}
+         <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
+         <Route path="/AddEmployee" element={<AddEmployee />} />
+         <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
+         <Route path="/EditEmployee/:id" element={<EditEmployee />} />
 
       </Routes>
     </Router>
