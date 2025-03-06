@@ -9,11 +9,16 @@ const BASE_URL = "http://localhost:8081/employee";
 const EditEmployee = () => {
   const [employee, setEmployee] = useState(null);
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     age: "",
     phoneNumber: "",
     email: "",
     jobRole: "",
     basicSalary: "",
+    address: "", // Include address in the form state
+    nic:"",
+    category:""
   });
   const [error, setError] = useState(null);
   const { id } = useParams();
@@ -27,13 +32,17 @@ const EditEmployee = () => {
     try {
       const response = await axios.get(`${BASE_URL}/${id}`);
       setEmployee(response.data);
-      // Set only the updatable fields in the state
       setFormData({
+        firstName:response.data.firstName || "",
+        lastName:response.data.lastName || "",
         age: response.data.age || "",
         phoneNumber: response.data.phoneNumber || "",
         email: response.data.email || "",
         jobRole: response.data.jobRole || "",
         basicSalary: response.data.basicSalary || "",
+        address: response.data.address || "", // Ensure address is populated
+        nic: response.data.nic || "" ,
+        category:response.data.category || ""
       });
     } catch (err) {
       console.error("Error fetching employee by ID:", err);
@@ -48,24 +57,25 @@ const EditEmployee = () => {
     });
   };
 
-  const handleUpdate = () => {
-    if (employee) {
-      navigate(`/update-employee/${employee.id}`);
-    }
-  };
-
   const handleSave = async () => {
     try {
-      // Send only the updatable fields in the request
+      // Include the employee id in the request payload
       const updatedData = {
+     
+        id: employee.id,  // Ensure the ID is included
+        firstName:formData.firstName,
+        lastName:formData.lastName,
         age: formData.age,
         phoneNumber: formData.phoneNumber,
         email: formData.email,
         jobRole: formData.jobRole,
         basicSalary: formData.basicSalary,
+        nic: formData.nic,
+        category:formData.category
       };
-
-      await axios.put(`${BASE_URL}/${id}`, updatedData);
+  
+      await axios.post(`${BASE_URL}/add`, updatedData); // Use POST instead of PUT
+  
       alert("Employee details updated successfully!");
       getEmployeeById(); // Refresh data after updating
     } catch (err) {
@@ -116,6 +126,10 @@ const EditEmployee = () => {
             <input type="number" name="age" value={formData.age} onChange={handleChange} />
           </div>
           <div className="form-group">
+            <label>Address:</label>
+            <input type="text" name="address" value={formData.address} onChange={handleChange} />
+          </div>
+          <div className="form-group">
             <label>Job Role:</label>
             <input type="text" name="jobRole" value={formData.jobRole} onChange={handleChange} />
           </div>
@@ -131,11 +145,8 @@ const EditEmployee = () => {
             <label>Basic Salary:</label>
             <input type="number" name="basicSalary" value={formData.basicSalary} onChange={handleChange} />
           </div>
-          <button type="button" onClick={handleUpdate} className="update-btn">
+          <button type="button" onClick={handleSave} className="update-btn">
             Update
-          </button>
-          <button type="button" onClick={handleSave} className="save-btn">
-            Save
           </button>
         </form>
       </div>

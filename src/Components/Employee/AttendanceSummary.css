@@ -1,0 +1,45 @@
+/* Styling for the search bar and calendar section */
+.attendance-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+
+/* Container for search bar and icon */
+.search-container {
+    position: relative;
+    width: 188px; /* Adjust width as needed */
+  }
+  
+  /* Styling for the search bar */
+  .search-bar {
+    width: 100%;
+    padding: 10px 0px 9px 5px; /* Adjust padding for icon positioning */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  /* Styling for the search icon */
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #333;
+    pointer-events: none; /* Prevent clicking the icon */
+  }
+  
+  .calendar-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .calendar {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }

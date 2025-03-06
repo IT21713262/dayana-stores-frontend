@@ -31,7 +31,7 @@ const EmployeeDashboard = () => {
     if (!confirmDelete) return;
   
     try {
-      await axios.delete(`${BASE_URL}/${id}`); // Send DELETE request to the correct endpoint
+      await axios.delete(`${BASE_URL}?id=${id}`); // Send DELETE request to the correct endpoint
       setEmployees((prevEmployees) => prevEmployees.filter((emp) => emp.id !== id)); // Update the state
       alert("Employee deleted successfully.");
     } catch (error) {
@@ -71,24 +71,6 @@ const EmployeeDashboard = () => {
 
       {/* Add Employee Form */}
       <div className="form-container">
-        <input
-          type="text"
-          placeholder="First Name"
-          value={newEmployee.firstName}
-          onChange={(e) => setNewEmployee({ ...newEmployee, firstName: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={newEmployee.lastName}
-          onChange={(e) => setNewEmployee({ ...newEmployee, lastName: e.target.value })}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={newEmployee.email}
-          onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
-        />
         <select
           value={newEmployee.category}
           onChange={(e) => setNewEmployee({ ...newEmployee, category: e.target.value })}

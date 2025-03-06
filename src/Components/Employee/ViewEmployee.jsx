@@ -70,6 +70,10 @@ const ViewEmployee = () => {
             <input type="number" value={employee.age} readOnly />
           </div>
           <div className="form-group">
+            <label>Address:</label>
+            <input type="text" value={employee.address} readOnly />
+          </div>
+          <div className="form-group">
             <label>Job Role:</label>
             <input type="text" value={employee.jobRole} readOnly />
           </div>

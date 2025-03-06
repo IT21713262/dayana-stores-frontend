@@ -11,6 +11,8 @@ import EmployeeDashboard from "./Components/Employee/EmployeeDashboard";
 import AddEmployee from "./Components/Employee/AddEmployee";
 import ViewEmployee from "./Components/Employee/ViewEmployee";
 import EditEmployee from "./Components/Employee/EditEmployee";
+import ManageAttendance from "./Components/Employee/ManageAttendance";
+import AttendanceSummary from "./Components/Employee/AttendanceSummary";
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
          <Route path="/AddEmployee" element={<AddEmployee />} />
          <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
          <Route path="/EditEmployee/:id" element={<EditEmployee />} />
+         <Route path="/ManageAttendance" element={<ManageAttendance />} />
+         <Route path="/AttendanceSummary" element={<AttendanceSummary />} />
+
 
       </Routes>
     </Router>
