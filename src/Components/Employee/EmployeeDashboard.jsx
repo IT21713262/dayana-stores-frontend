@@ -54,6 +54,9 @@ const EmployeeDashboard = () => {
     navigate(`/EditEmployee/${id}`); 
   };
 
+  const handleManageAttendanceClick = () => {
+    navigate('/ManageAttendance'); // Navigate to Manage Attendance page
+  };
 
   
 
@@ -64,8 +67,9 @@ const EmployeeDashboard = () => {
         <NavBar />
         <h2 className="dashboard-title">Employee Management</h2>
         <div className="header-buttons">
-          <button className="header-button">Manage Employee</button>
-          <button className="header-button">Manage Attendance</button>
+          <button className="header-button" onClick={handleManageAttendanceClick}>
+            Manage Attendance
+          </button>
         </div>
       </div>
 

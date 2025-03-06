@@ -3,13 +3,16 @@ import axios from "axios";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import NavBar from "../NavBar";
 import "./ManageAttendance.css"; // Ensure this file exists
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
   const BASE_URL = "http://localhost:8081/employee";
   const BASE_URL1 = "http://localhost:8081/attendance";
   
+  
   const ManageAttendance = () => {
     const [employees, setEmployees] = useState([]);
     const [attendance, setAttendance] = useState({}); // Store attendance status
+    const navigate = useNavigate();  // Initialize navigate function using useNavigate hook
   
     useEffect(() => {
       fetchEmployees();
@@ -58,8 +61,12 @@ import "./ManageAttendance.css"; // Ensure this file exists
         alert("An error occurred while marking attendance.");
       }
     };
+
     
     
+    const handleManageEmployeeClick = () => {
+      navigate('/EmployeeDashboard'); // Navigate to Manage Employee page
+    };
     
   
     return (
@@ -68,8 +75,10 @@ import "./ManageAttendance.css"; // Ensure this file exists
           <NavBar />
           <h2 className="dashboard-title">Manage Attendance</h2>
           <div className="header-buttons">
-          <button className="header-button">Manage Employee</button>
-          <button className="header-button">Manage Attendance</button>
+          <button className="header-button" onClick={handleManageEmployeeClick}>
+            Manage Employee
+          </button>
+          
         </div>
         </div>  
         <button className="summary-header-button">Attendance Summary</button>
@@ -80,6 +89,7 @@ import "./ManageAttendance.css"; // Ensure this file exists
               <th>Name</th>
               <th>Phone No</th>
               <th>Mark Attendance</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -94,6 +104,7 @@ import "./ManageAttendance.css"; // Ensure this file exists
                     onClick={(e) => {
                       e.stopPropagation(); // Ensure event doesn't bubble
                       handleMarkAttendance(emp.id, true);
+                      window.location.reload(); // This will reload the current page
                     }}
                     style={{ pointerEvents: "auto" }} // Ensure clicks are allowed
                   />
@@ -103,11 +114,13 @@ import "./ManageAttendance.css"; // Ensure this file exists
                     onClick={(e) => {
                       e.stopPropagation();
                       handleMarkAttendance(emp.id, false);
+                      window.location.reload(); // This will reload the current page
                     }}
                     style={{ pointerEvents: "auto" }} 
                   />
 
                 </td>
+                <td>{emp.attendanceStatus}</td>
               </tr>
             ))}
           </tbody>
