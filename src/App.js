@@ -38,6 +38,8 @@ function App() {
 
         {/*Orders*/}
         <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
+        <Route path="/add-item" element={<Inventory.AddNewItem/>} />
+
 
       </Routes>
     </Router>
