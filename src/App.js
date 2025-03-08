@@ -7,6 +7,7 @@ import SupplierTransactions from "./Components/Suppliers/SupplierTransactions";
 import AddTransaction from "./Components/Suppliers/AddTransaction";
 import GenerateReport from "./Components/Suppliers/GenerateReport";
 import * as Inventory from "./Components/Inventory/InventoryRoutes";
+import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
 
         {/*inventory routes */}
         <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />
+
+        {/*Orders*/}
+       <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
 
       </Routes>
     </Router>
