@@ -12,6 +12,8 @@ import EmployeeDashboard from "./Components/Employee/EmployeeDashboard";
 import AddEmployee from "./Components/Employee/AddEmployee";
 import ViewEmployee from "./Components/Employee/ViewEmployee";
 import EditEmployee from "./Components/Employee/EditEmployee";
+import ManageAttendance from "./Components/Employee/ManageAttendance";
+import AttendanceSummary from "./Components/Employee/AttendanceSummary";
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
 import * as Inventory from "./Components/Inventory/InventoryRoutes";
@@ -35,6 +37,9 @@ function App() {
         <Route path="/AddEmployee" element={<AddEmployee />} />
         <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
         <Route path="/EditEmployee/:id" element={<EditEmployee />} />
+         <Route path="/ManageAttendance" element={<ManageAttendance />} />
+         <Route path="/AttendanceSummary" element={<AttendanceSummary />} />
+
 
         {/*Orders*/}
         <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />

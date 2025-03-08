@@ -3,17 +3,25 @@ import axios from "axios";
 import NavBar from "../NavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import "./ViewEmployee.css";
+import { ToastContainer, toast } from "react-toastify"; // Import Toastify
+import "react-toastify/dist/ReactToastify.css"; // Import CSS
+
 
 const BASE_URL = "http://localhost:8081/employee";
 
 const EditEmployee = () => {
   const [employee, setEmployee] = useState(null);
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     age: "",
     phoneNumber: "",
     email: "",
     jobRole: "",
     basicSalary: "",
+    address: "", // Include address in the form state
+    nic:"",
+    category:""
   });
   const [error, setError] = useState(null);
   const { id } = useParams();
@@ -27,13 +35,17 @@ const EditEmployee = () => {
     try {
       const response = await axios.get(`${BASE_URL}/${id}`);
       setEmployee(response.data);
-      // Set only the updatable fields in the state
       setFormData({
+        firstName:response.data.firstName || "",
+        lastName:response.data.lastName || "",
         age: response.data.age || "",
         phoneNumber: response.data.phoneNumber || "",
         email: response.data.email || "",
         jobRole: response.data.jobRole || "",
         basicSalary: response.data.basicSalary || "",
+        address: response.data.address || "", // Ensure address is populated
+        nic: response.data.nic || "" ,
+        category:response.data.category || ""
       });
     } catch (err) {
       console.error("Error fetching employee by ID:", err);
@@ -48,29 +60,37 @@ const EditEmployee = () => {
     });
   };
 
-  const handleUpdate = () => {
-    if (employee) {
-      navigate(`/update-employee/${employee.id}`);
-    }
-  };
-
   const handleSave = async () => {
     try {
-      // Send only the updatable fields in the request
+      // Include the employee id in the request payload
       const updatedData = {
+     
+        id: employee.id,  // Ensure the ID is included
+        firstName:formData.firstName,
+        lastName:formData.lastName,
         age: formData.age,
         phoneNumber: formData.phoneNumber,
         email: formData.email,
         jobRole: formData.jobRole,
         basicSalary: formData.basicSalary,
+        nic: formData.nic,
+        category:formData.category
       };
+  
+      await axios.post(`${BASE_URL}/add`, updatedData); // Use POST instead of PUT
+      toast.success("Employee details updated successfully!", { // Show success popup
+        position: "top-right",
+        autoClose: 3000, // Auto close after 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
 
-      await axios.put(`${BASE_URL}/${id}`, updatedData);
-      alert("Employee details updated successfully!");
-      getEmployeeById(); // Refresh data after updating
+      getEmployeeById();
     } catch (err) {
       console.error("Error updating employee details:", err);
-      alert("Failed to update employee details.");
+      toast.error("Failed to update employee details.");
     }
   };
 
@@ -82,60 +102,76 @@ const EditEmployee = () => {
     return <div>Loading...</div>;
   }
 
+  const handleManageAttendanceClick = () => {
+    navigate('/ManageAttendance'); // Navigate to Manage Attendance page
+  };
+  
+  const handleManageEmployeeClick = () => {
+    navigate('/EmployeeDashboard'); // Navigate to Manage Employee page
+  };
+  
+
   return (
-    <div className="dashboard-container">
-      <div className="header-bar">
+    <div className="emp-dashboard-container">
+       <ToastContainer /> {/* Add Toast Container for notifications */}
+      <div className="emp-header-bar">
         <NavBar />
-        <h2 className="dashboard-title">Employee Management</h2>
-        <div className="header-buttons">
-          <button className="header-button">Manage Employee</button>
-          <button className="header-button">Manage Attendance</button>
+        <h2 className="emp-dashboard-title">Employee Management</h2>
+        <div className="emp-header-buttons">
+        <button className="emp-header-button" onClick={handleManageEmployeeClick}>
+            Manage Employee
+          </button>
+          
+          <button className="emp-header-button" onClick={handleManageAttendanceClick}>
+            Manage Attendance
+          </button>
         </div>
       </div>
-      <div className="employee-detail-container">
-        <h1 className="title">Employee Details</h1>
-        <form className="view-employee-form">
-          <div className="form-group">
+      <div className="emp-employee-detail-container">
+        <h1 className="emp-title">Employee Details</h1>
+        <form className="emp-view-employee-form">
+          <div className="emp-form-group">
             <label>First Name:</label>
             <input type="text" value={employee.firstName} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Last Name:</label>
             <input type="text" value={employee.lastName} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Phone:</label>
             <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Email:</label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Age:</label>
             <input type="number" name="age" value={formData.age} onChange={handleChange} />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
+            <label>Address:</label>
+            <input type="text" name="address" value={formData.address} onChange={handleChange} />
+          </div>
+          <div className="emp-form-group">
             <label>Job Role:</label>
             <input type="text" name="jobRole" value={formData.jobRole} onChange={handleChange} />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Category:</label>
             <input type="text" value={employee.category} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>NIC:</label>
             <input type="text" value={employee.nic} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Basic Salary:</label>
             <input type="number" name="basicSalary" value={formData.basicSalary} onChange={handleChange} />
           </div>
-          <button type="button" onClick={handleUpdate} className="update-btn">
+          <button type="emp-button" onClick={handleSave} className="emp-update-btn">
             Update
-          </button>
-          <button type="button" onClick={handleSave} className="save-btn">
-            Save
           </button>
         </form>
       </div>

@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center; /* Centers items vertically */
   margin-bottom: 20px;
-  background-color: #206D0F;
+  background-color: #258311;
   padding: 4px 10px; /* Adjust spacing */
 
   
@@ -98,33 +98,7 @@
     background: #f8fafc;
   }
   
-  /* Action Buttons */
-  .emp-action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-  }
-  
-  .emp-action-buttons svg {
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .emp-action-buttons svg:hover {
-    transform: scale(1.1);
-  }
-  
-  .emp-edit-button {
-    color: #facc15;
-  }
-  
-  .emp-delete-button {
-    color: #dc2626;
-  }
-  
-  .emp-view-button {
-    color: #3b82f6;
-  }
+ 
   
   /* Edit Form */
   .emp-edit-form-container {
@@ -151,64 +125,46 @@
   .emp-update-button:hover {
     background-color: #1d4ed8;
   }
-  /* EmployeeDashboard.css */
-.emp-filter-container {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Adjust the spacing as needed */
-  margin-bottom: 20px;
+  
+  .present-button, .absent-button {
+    cursor: pointer; /* Make sure it's clickable */
+    font-size: 20px; /* Ensure it's visible */
+    margin: 0 10px; /* Add spacing */
+    transition: transform 0.2s ease; /* Smooth effect */
+  }
+  
+  .present-button:hover, .absent-button:hover {
+    transform: scale(1.2); /* Slight zoom on hover */
+  }
+  
+  .selected {
+    color: green !important; /* Marked present */
+  }
+  
+  .absent-button.selected {
+    color: red !important; /* Marked absent */
+  }
+  
+.emp-attendance-buttons {
+  pointer-events: auto; /* Ensure buttons are clickable */
+}
+.emp-summary-header-button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  font-size: 16px; /* Text size */
+  padding: 10px 20px; /* Spacing */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.emp-category-filter {
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 200px;
-
-}
-/* Custom styles for the confirmation toast */
-.emp-confirmation-toast-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+.emp-summary-header-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slight zoom effect */
 }
 
-
-.emp-confirmation-buttons {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+.emp-summary-header-button:active {
+  background-color: #3e8e41; /* Even darker green on click */
+  transform: scale(0.95); /* Click effect */
 }
-
-.emp-confirm-btn, .emp-cancel-btn {
-  padding: 10px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-}
-
-.emp-confirm-btn {
-  background-color: #4caf50;
-  color: white;
-}
-
-.emp-cancel-btn {
-  background-color: #f44336;
-  color: white;
-}
-
-.emp-confirm-btn:hover {
-  background-color: #45a049;
-}
-
-.emp-cancel-btn:hover {
-  background-color: #e53935;
-}
-
-
-
-
-

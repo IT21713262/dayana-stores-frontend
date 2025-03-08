@@ -1,4 +1,4 @@
-.employee-detail-container {
+.emp-employee-detail-container {
     width: 70%; /* Adjust width to make it smaller */
     max-width: 900px; /* Ensure it doesn't get too large */
     border: 1px solid #ccc;
@@ -10,32 +10,32 @@
   }
   
   
-  .title {
+  .emp-title {
     font-size: 22px;
     margin-bottom: 20px;
     text-align: center;
   }
   
-  .view-employee-form {
+  .emp-view-employee-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px 40px; /* Increase row and column spacing */
     padding: 0 10%;
   }
   
-  .form-group {
+  .emp-form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px; /* Increase space between fields */
   }
   
-  .form-group label {
+  .emp-form-group label {
     font-weight: bold;
     font-size: 16px; /* Increase label size */
     margin-bottom: 8px; /* Increase space between label and input */
   }
   
-  .form-group input {
+  .emp-form-group input {
     padding: 10px;
     font-size: 14px; /* Slightly increase font size */
     border: 1px solid #ccc;
@@ -44,7 +44,7 @@
     box-sizing: border-box;
   }
   
-  .update-btn {
+  .emp-update-btn {
     grid-column: span 2;
     padding: 8px;
     font-size: 14px;
@@ -58,7 +58,7 @@
     margin: 20px auto;
   }
   
-  .update-btn:hover {
+  .emp-update-btn:hover {
     background-color: #13441d;
   }
   
