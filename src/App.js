@@ -1,11 +1,8 @@
 // src/App.js
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SupplierDashboard from "./Components/Suppliers/SupplierDashboard";
 import AddSupplier from "./Components/Suppliers/addSuppliers";
-import UpdateSupplier from "./Components/Suppliers/updateSuppliers";
-import SupplierTransactions from "./Components/Suppliers/SupplierTransactions";
 import UpdateSupplier from "./Components/Suppliers/updateSuppliers";
 import SupplierTransactions from "./Components/Suppliers/SupplierTransactions";
 import AddTransaction from "./Components/Suppliers/AddTransaction";
@@ -17,8 +14,7 @@ import ViewEmployee from "./Components/Employee/ViewEmployee";
 import EditEmployee from "./Components/Employee/EditEmployee";
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
-/*import GenerateReport from "./Components/Suppliers/GenerateReport";
-import * as Inventory from "./Components/Inventory/InventoryRoutes"; */
+import * as Inventory from "./Components/Inventory/InventoryRoutes";
 
 function App() {
   return (
