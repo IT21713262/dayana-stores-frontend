@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function AddTransaction() {
   const [supplierName, setSupplierName] = useState("");
   const [product, setProduct] = useState("");
   const [productCategory, setProductCategory] = useState("");
-  const [amount, setAmount] = useState("");
+  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
   const [date, setDate] = useState("");
+
+  // Calculate total amount whenever price or quantity changes
+  useEffect(() => {
+    setTotalAmount(price * quantity);
+  }, [price, quantity]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTransaction = { supplierName, product, productCategory, amount, date };
+    const newTransaction = { supplierName, product, productCategory, price, quantity, totalAmount, date };
     axios
-      .post("/api/transactions", newTransaction)
+      .post("/api/transactions", newTransaction) // Adjusted URL
       .then(() => {
         alert("Transaction added successfully");
-        window.location.href = "/transactions"; // Redirect to transactions page
+        window.location.href = "/supplierDashboard"; // Redirect to transactions page
       })
       .catch((err) => alert("Error: " + err));
   };
@@ -49,6 +56,7 @@ export default function AddTransaction() {
         <h2 style={{ textAlign: "center", marginBottom: "20px", color: "#54B168" }}>
           Add Transaction
         </h2>
+
         <div>
           <label htmlFor="supplierName" style={labelStyle}>Supplier Name</label>
           <input 
@@ -60,6 +68,7 @@ export default function AddTransaction() {
             style={inputStyle}
           />
         </div>
+
         <div>
           <label htmlFor="product" style={labelStyle}>Product</label>
           <input 
@@ -71,6 +80,7 @@ export default function AddTransaction() {
             style={inputStyle}
           />
         </div>
+
         <div>
           <label htmlFor="productCategory" style={labelStyle}>Product Category</label>
           <select
@@ -86,17 +96,42 @@ export default function AddTransaction() {
             <option value="Stationery">Stationery</option>
           </select>
         </div>
+
         <div>
-          <label htmlFor="amount" style={labelStyle}>Amount</label>
+          <label htmlFor="price" style={labelStyle}>Price</label>
           <input 
             type="number"
-            id="amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            id="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             required
             style={inputStyle}
           />
         </div>
+
+        <div>
+          <label htmlFor="quantity" style={labelStyle}>Quantity</label>
+          <input 
+            type="number"
+            id="quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            required
+            style={inputStyle}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="total-amount" style={labelStyle}>Total Amount</label>
+          <input 
+            type="number"
+            id="total-amount"
+            value={totalAmount}
+            readOnly
+            style={inputStyle}
+          />
+        </div>
+
         <div>
           <label htmlFor="date" style={labelStyle}>Date</label>
           <input 
@@ -108,6 +143,7 @@ export default function AddTransaction() {
             style={inputStyle}
           />
         </div>
+
         <div style={{
           display: "flex",
           justifyContent: "space-between",

@@ -1,26 +1,31 @@
-// src/Components/Suppliers/SupplierDashboard.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import "./SupplierDashboard.css";
 
-
 export default function SupplierDashboard() {
   const [suppliers, setSuppliers] = useState([]);
   const [supplierSearch, setSupplierSearch] = useState("");
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState([]); 
   const [transactionSearch, setTransactionSearch] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchSuppliers();
+    fetchTransactions(); 
   }, []);
-  
+
   const fetchSuppliers = () => {
     axios.get("/api/suppliers")
       .then((res) => setSuppliers(res.data))
       .catch(err => console.error("Error fetching suppliers:", err));
+  };
+
+  const fetchTransactions = () => {
+    axios.get("/api/transactions/all") 
+      .then((res) => setTransactions(res.data))
+      .catch(err => console.error("Error fetching transactions:", err));
   };
 
   const filteredSuppliers = suppliers.filter(supplier =>
@@ -44,6 +49,7 @@ export default function SupplierDashboard() {
     }
   };
 
+  const handleEditTransaction = id => navigate(`/UpdateTransaction/${id}`);
   const handleViewTransaction = id => navigate(`/viewTransaction/${id}`);
   const handleDeleteTransaction = id => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
@@ -54,7 +60,6 @@ export default function SupplierDashboard() {
   };
 
   return (
-
     <div className="dashboard-container">
       {/* Suppliers Section */}
       <div className="section-container">
@@ -75,7 +80,6 @@ export default function SupplierDashboard() {
               Generate Report
             </button>
           </div>
-
         </div>
         <table className="table-style">
           <thead>
@@ -109,7 +113,6 @@ export default function SupplierDashboard() {
         </table>
       </div>
 
-
       {/* Supplier Transactions Section */}
       <div className="section-container">
         <h2 className="section-title">Supplier Transactions</h2>
@@ -131,36 +134,41 @@ export default function SupplierDashboard() {
           </div>
         </div>
         <table className="table-style">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Supplier Name</th>
-              <th>Product</th>
-              <th>Amount</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredTransactions.map(tx => (
-              <tr key={tx.id}>
-                <td>{tx.id}</td>
-                <td>{tx.supplierName}</td>
-                <td>{tx.product}</td>
-                <td>{tx.amount}</td>
-                <td>{tx.date}</td>
-                <td>
-                  <button onClick={() => handleViewTransaction(tx.id)} className="edit-button">Edit</button>
-                  <button onClick={() => handleViewTransaction(tx.id)} className="view-button">View</button>
-                  <button onClick={() => handleDeleteTransaction(tx.id)} className="delete-button">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  <thead>
+    <tr>
+      <th>Transaction ID</th> {/* Updated column for Transaction ID */}
+      <th>Supplier Name</th>
+      <th>Product</th>
+      <th>Product Category</th> {/* Added Product Category */}
+      <th>Price</th> {/* Added Price */}
+      <th>Quantity</th> {/* Added Quantity */}
+      <th>Total Amount</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredTransactions.map(tx => (
+      <tr key={tx.id}>
+        <td>{tx.id}</td> {/* Transaction ID */}
+        <td>{tx.supplierName}</td>
+        <td>{tx.product}</td>
+        <td>{tx.productCategory}</td> {/* Display Product Category */}
+        <td>{tx.price}</td> {/* Display Price */}
+        <td>{tx.quantity}</td> {/* Display Quantity */}
+        <td>{tx.totalAmount}</td>
+        <td>{tx.date}</td>
+        <td>
+          <button onClick={() => handleEditTransaction(tx.id)} className="edit-button">Edit</button>
+          <button onClick={() => handleViewTransaction(tx.id)} className="view-button">View</button>
+          <button onClick={() => handleDeleteTransaction(tx.id)} className="delete-button">Delete</button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
       </div>
     </div>
-    
   );
 }
