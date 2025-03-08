@@ -38,8 +38,10 @@ function App() {
 
         {/*Orders*/}
         <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
+        
+        {/*Inventory*/}
         <Route path="/add-item" element={<Inventory.AddNewItem/>} />
-
+        <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />
 
       </Routes>
     </Router>
