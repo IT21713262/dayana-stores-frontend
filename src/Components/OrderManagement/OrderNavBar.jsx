@@ -21,7 +21,7 @@ function OrderNavBar() {
   return (
     <>
       {/* Top Navbar */}
-      <div className="navbar">
+      <div className="order-navbar">
         <button className="menu-bars" onClick={toggleSidebar} aria-label="Open Sidebar">
           <FaBars />
         </button>
