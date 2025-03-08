@@ -9,6 +9,7 @@ import AddTransaction from "./Components/Suppliers/AddTransaction";
 import SupplierReport from "./Components/Suppliers/SupplierReport";
 import ViewSupplier from "./Components/Suppliers/viewSupplier";
 
+import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         <Route path="/supplierReport" element={<SupplierReport />} />
         <Route path="/viewSupplier/:id" element={<ViewSupplier />} />
         <Route path="/" element={<SupplierDashboard />} /> {/* Default route */}
+
+        {/*Orders*/}
+       <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
 
       </Routes>
     </Router>
