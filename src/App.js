@@ -32,13 +32,13 @@ function App() {
         <Route path="/supplierReport" element={<SupplierReport />} />
         <Route path="/viewSupplier/:id" element={<ViewSupplier />} />
 
-         {/*Employee routes */}
+        {/*Employee routes */}
         <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
         <Route path="/AddEmployee" element={<AddEmployee />} />
         <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
         <Route path="/EditEmployee/:id" element={<EditEmployee />} />
-         <Route path="/ManageAttendance" element={<ManageAttendance />} />
-         <Route path="/AttendanceSummary" element={<AttendanceSummary />} />
+        <Route path="/ManageAttendance" element={<ManageAttendance />} />
+        <Route path="/AttendanceSummary" element={<AttendanceSummary />} />
 
 
         {/*Orders*/}
