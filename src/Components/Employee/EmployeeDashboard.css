@@ -1,0 +1,154 @@
+/* EmployeeDashboard.css */
+
+/* Container */
+.dashboard-container {
+    padding: 24px;
+  }
+  /* Header Bar Styles */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centers items vertically */
+  margin-bottom: 20px;
+  background-color: #258311;
+  padding: 10px 20px; /* Adjust spacing */
+
+  
+}
+.header-buttons {
+  display: flex;
+  gap: 5px; /* Reduced gap between buttons */
+}
+.header-button {
+  background-color: #266d16;
+  color: white;
+  padding: 0 10px;  /* Only horizontal padding */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 50px;     /* Explicit height */
+  line-height: 30px; /* Align text vertically */
+
+}
+
+
+.header-button:hover {
+  background-color: #2e873f;
+}
+  /* Heading */
+  .dashboard-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+    
+  }
+  
+  /* Form Fields */
+  .form-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .form-container input,
+  .form-container select {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  .add-button {
+    background-color: #16a34a;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .add-button:hover {
+    background-color: #15803d;
+  }
+  
+  /* Table */
+  .employee-table {
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .employee-table th,
+  .employee-table td {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .employee-table thead {
+    background: #f1f5f9;
+  }
+  
+  .employee-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .employee-table tbody tr:hover {
+    background: #f8fafc;
+  }
+  
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .action-buttons svg {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .action-buttons svg:hover {
+    transform: scale(1.1);
+  }
+  
+  .edit-button {
+    color: #facc15;
+  }
+  
+  .delete-button {
+    color: #dc2626;
+  }
+  
+  .view-button {
+    color: #3b82f6;
+  }
+  
+  /* Edit Form */
+  .edit-form-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  
+  .edit-form-container input {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  .update-button {
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .update-button:hover {
+    background-color: #1d4ed8;
+  }
+  
