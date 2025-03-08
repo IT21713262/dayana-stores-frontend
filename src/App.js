@@ -14,6 +14,7 @@ import ViewEmployee from "./Components/Employee/ViewEmployee";
 import EditEmployee from "./Components/Employee/EditEmployee";
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
+import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
          <Route path="/AddEmployee" element={<AddEmployee />} />
          <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
          <Route path="/EditEmployee/:id" element={<EditEmployee />} />
+
+        {/*Orders*/}
+       <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
 
         {/*Orders*/}
        <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
