@@ -15,8 +15,8 @@ import EditEmployee from "./Components/Employee/EditEmployee";
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
-import GenerateReport from "./Components/Suppliers/GenerateReport";
-import * as Inventory from "./Components/Inventory/InventoryRoutes";
+/*import GenerateReport from "./Components/Suppliers/GenerateReport";
+import * as Inventory from "./Components/Inventory/InventoryRoutes"; */
 import EmployeeDashboard from "./Components/Employee/EmployeeDashboard";
 import AddEmployee from "./Components/Employee/AddEmployee";
 import ViewEmployee from "./Components/Employee/ViewEmployee";
