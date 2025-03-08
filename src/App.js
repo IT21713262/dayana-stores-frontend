@@ -14,13 +14,8 @@ import ViewEmployee from "./Components/Employee/ViewEmployee";
 import EditEmployee from "./Components/Employee/EditEmployee";
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 
-import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
 /*import GenerateReport from "./Components/Suppliers/GenerateReport";
 import * as Inventory from "./Components/Inventory/InventoryRoutes"; */
-import EmployeeDashboard from "./Components/Employee/EmployeeDashboard";
-import AddEmployee from "./Components/Employee/AddEmployee";
-import ViewEmployee from "./Components/Employee/ViewEmployee";
-import EditEmployee from "./Components/Employee/EditEmployee";
 
 function App() {
   return (
@@ -32,30 +27,18 @@ function App() {
         <Route path="/updateSuppliers/:id" element={<UpdateSupplier />} />
         <Route path="/transactions" element={<SupplierTransactions />} />
         <Route path="/addTransaction" element={<AddTransaction />} />
-        <Route path="/generateReport" element={<GenerateReport />} />
-        <Route path="/" element={<SupplierDashboard />} />
 
         <Route path="/supplierReport" element={<SupplierReport />} />
         <Route path="/viewSupplier/:id" element={<ViewSupplier />} />
-        <Route path="/" element={<SupplierDashboard />} /> {/* Default route */}
 
          {/*Employee routes */}
-         <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
-         <Route path="/AddEmployee" element={<AddEmployee />} />
-         <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
-         <Route path="/EditEmployee/:id" element={<EditEmployee />} />
+        <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
+        <Route path="/AddEmployee" element={<AddEmployee />} />
+        <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
+        <Route path="/EditEmployee/:id" element={<EditEmployee />} />
 
         {/*Orders*/}
-       <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
-
-        {/*Orders*/}
-       <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
-
-         {/*Employee routes */}
-         <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
-         <Route path="/AddEmployee" element={<AddEmployee />} />
-         <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
-         <Route path="/EditEmployee/:id" element={<EditEmployee />} />
+        <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
 
       </Routes>
     </Router>
