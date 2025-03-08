@@ -68,6 +68,14 @@ function App() {
         <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
 
         
+        <Route path="/generateReport" element={<GenerateReport />} />
+        <Route path="/" element={<SupplierDashboard />} />
+
+        {/*inventory routes */}
+        <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />
+        <Route path="/add-item" element={<Inventory.AddNewItem/>} />
+
+
       </Routes>
       </div>
           <Footer />
