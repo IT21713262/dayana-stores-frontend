@@ -36,53 +36,71 @@ const ViewEmployee = () => {
     return <div>Loading...</div>;
   }
 
+  const handleManageAttendanceClick = () => {
+    navigate('/ManageAttendance'); // Navigate to Manage Attendance page
+  };
+
+
+   
+  const handleManageEmployeeClick = () => {
+    navigate('/EmployeeDashboard'); // Navigate to Manage Employee page
+  };
+  
   return (
-    <div className="dashboard-container">
-      <div className="header-bar">
+    <div className="emp-dashboard-container">
+      <div className="emp-header-bar">
         <NavBar />
-        <h2 className="dashboard-title">Employee Management</h2>
-        <div className="header-buttons">
-          <button className="header-button">Manage Employee</button>
-          <button className="header-button">Manage Attendance</button>
+        <h2 className="emp-dashboard-title">Employee Management</h2>
+        <div className="emp-header-buttons">
+        <button className="emp-header-button" onClick={handleManageEmployeeClick}>
+            Manage Employee
+          </button>
+          <button className="emp-header-button" onClick={handleManageAttendanceClick}>
+            Manage Attendance
+          </button>
         </div>
       </div>
-      <div className="employee-detail-container">
-        <h1 className="title">Employee Details</h1>
-        <form className="view-employee-form">
-          <div className="form-group">
+      <div className="emp-employee-detail-container">
+        <h1 className="emp-title">Employee Details</h1>
+        <form className="emp-view-employee-form">
+          <div className="emp-form-group">
             <label>First Name:</label>
             <input type="text" value={employee.firstName} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Last Name:</label>
             <input type="text" value={employee.lastName} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Phone:</label>
             <input type="text" value={employee.phoneNumber} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Email:</label>
             <input type="email" value={employee.email} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Age:</label>
             <input type="number" value={employee.age} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
+            <label>Address:</label>
+            <input type="text" value={employee.address} readOnly />
+          </div>
+          <div className="emp-form-group">
             <label>Job Role:</label>
             <input type="text" value={employee.jobRole} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>Category:</label>
             <input type="text" value={employee.category} readOnly />
           </div>
-          <div className="form-group">
+          <div className="emp-form-group">
             <label>NIC:</label>
             <input type="text" value={employee.nic} readOnly />
           </div>
-          <div className="form-group">
-            <label>Basic Salary:</label>
+          <div className="emp-form-group">
+            <label>Daily Salary:</label>
             <input type="number" value={employee.basicSalary} readOnly />
           </div>
         </form>
