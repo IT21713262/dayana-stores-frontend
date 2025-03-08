@@ -67,22 +67,25 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
     const handleManageEmployeeClick = () => {
       navigate('/EmployeeDashboard'); // Navigate to Manage Employee page
     };
+    const handleAttendanceSummaryClick = () => {
+      navigate('/AttendanceSummary'); // Navigate to Manage Employee page
+    };
     
   
     return (
-      <div className="dashboard-container">
-        <div className="header-bar">
+      <div className="emp-dashboard-container">
+        <div className="emp-header-bar">
           <NavBar />
-          <h2 className="dashboard-title">Manage Attendance</h2>
-          <div className="header-buttons">
-          <button className="header-button" onClick={handleManageEmployeeClick}>
+          <h2 className="emp-dashboard-title">Manage Attendance</h2>
+          <div className="emp-header-buttons">
+          <button className="emp-header-button" onClick={handleManageEmployeeClick}>
             Manage Employee
           </button>
           
         </div>
         </div>  
-        <button className="summary-header-button">Attendance Summary</button>
-        <table className="employee-table">
+        <button className="emp-summary-header-button" onClick={handleAttendanceSummaryClick}>Attendance Summary</button>
+        <table className="emp-employee-table">
           <thead>
             <tr>
               <th>Employee ID</th>
@@ -98,7 +101,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
                 <td>{emp.id}</td>
                 <td>{`${emp.firstName} ${emp.lastName}`}</td>
                 <td>{emp.phoneNumber}</td>
-                <td className="attendance-buttons">
+                <td className="emp-attendance-buttons">
                 <FaCheck
                     className={`present-button ${attendance[emp.id] === true ? "selected" : ""}`}
                     onClick={(e) => {

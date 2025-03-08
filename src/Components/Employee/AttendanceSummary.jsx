@@ -3,6 +3,8 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa"; // Importing the search icon
 import NavBar from "../NavBar";
 import "./AttendanceSummary.css"; // Ensure this file exists
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 
 const BASE_URL = "http://localhost:8081/employee";
 const BASE_URL1 = "http://localhost:8081/attendance";
@@ -11,6 +13,8 @@ const AttendanceSummary = () => {
   const [employees, setEmployees] = useState([]);
   const [attendance, setAttendance] = useState({});
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
+  const navigate = useNavigate();  // Initialize navigate function using useNavigate hook
+  
 
   useEffect(() => {
     fetchEmployees();
@@ -37,34 +41,48 @@ const AttendanceSummary = () => {
   const filteredEmployees = employees.filter((emp) =>
     `${emp.firstName} ${emp.lastName}`.toLowerCase().includes(searchQuery.toLowerCase())
   );
+     
+  const handleManageEmployeeClick = () => {
+    navigate('/EmployeeDashboard'); // Navigate to Manage Employee page
+  };
+  
+  const handleManageAttendanceClick = () => {
+    navigate('/ManageAttendance'); // Navigate to Manage Attendance page
+  };
+
+  
 
   return (
-    <div className="dashboard-container">
-      <div className="header-bar">
+    <div className="emp-dashboard-container">
+      <div className="emp-header-bar">
         <NavBar />
-        <h2 className="dashboard-title"> Attendance Summary</h2>
-        <div className="header-buttons">
-          <button className="header-button">Manage Employee</button>
-          <button className="header-button">Manage Attendance</button>
+        <h2 className="emp-dashboard-title"> Attendance Summary</h2>
+        <div className="emp-header-buttons">
+        <button className="emp-header-button" onClick={handleManageEmployeeClick}>
+            Manage Employee
+          </button>
+          <button className="emp-header-button" onClick={handleManageAttendanceClick}>
+            Manage Attendance
+          </button>
         </div>
       </div>
-      <div className="attendance-header">
-        <div className="search-container">
+      <div className="emp-attendance-header">
+        <div className="emp-search-container">
           <input
             type="text"
             placeholder="Search Employee"
-            className="search-bar"
+            className="emp-search-bar"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)} // Handle search query change
           />
-          <FaSearch className="search-icon" />
+          <FaSearch className="emp-search-icon" />
         </div>
 
-        <div className="calendar-container">
-          <input type="date" className="calendar" /> {/* Calendar input */}
+        <div className="emp-calendar-container">
+          <input type="date" className="emp-calendar" /> {/* Calendar input */}
         </div>
       </div>
-      <table className="employee-table">
+      <table className="emp-employee-table">
         <thead>
           <tr>
             <th>Employee ID</th>

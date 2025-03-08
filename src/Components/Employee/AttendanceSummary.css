@@ -1,5 +1,5 @@
 /* Styling for the search bar and calendar section */
-.attendance-header {
+.emp-attendance-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -7,13 +7,13 @@
 
 
 /* Container for search bar and icon */
-.search-container {
+.emp-search-container {
     position: relative;
     width: 188px; /* Adjust width as needed */
   }
   
   /* Styling for the search bar */
-  .search-bar {
+  .emp-search-bar {
     width: 100%;
     padding: 10px 0px 9px 5px; /* Adjust padding for icon positioning */
     border-radius: 5px;
@@ -22,7 +22,7 @@
   }
   
   /* Styling for the search icon */
-  .search-icon {
+  .emp-search-icon {
     position: absolute;
     top: 50%;
     right: 10px;
@@ -32,12 +32,12 @@
     pointer-events: none; /* Prevent clicking the icon */
   }
   
-  .calendar-container {
+  .emp-calendar-container {
     display: flex;
     align-items: center;
   }
   
-  .calendar {
+  .emp-calendar {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
