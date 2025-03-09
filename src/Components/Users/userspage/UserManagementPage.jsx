@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
-
+import '../UserManagement.css';
 function UserManagementPage() {
     const [users, setUsers] = useState([]);
 

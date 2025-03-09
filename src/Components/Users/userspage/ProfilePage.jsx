@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
 import { Link } from 'react-router-dom';
-
+import '../UserManagement.css';
 function ProfilePage() {
   const [profileInfo, setProfileInfo] = useState({});
 

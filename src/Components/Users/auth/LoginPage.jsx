@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserService from '../service/UserService';
 import { AuthContext } from '../auth/AuthContext';
+import '../UserManagement.css';
+
 
 function LoginPage() {
     const { refreshAuthState } = useContext(AuthContext);

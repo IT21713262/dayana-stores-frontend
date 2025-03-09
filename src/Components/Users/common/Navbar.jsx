@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../auth/AuthContext';
 //import UserService from '../service/UserService';
 import UserService from '../service/UserService';
+import '../UserManagement.css';
 
 function Navbar() {
     const { isAuthenticated, isAdmin, refreshAuthState } = useContext(AuthContext);

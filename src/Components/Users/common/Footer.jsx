@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../UserManagement.css';
 const Footer = () => {
   return (
     <div>
