@@ -25,7 +25,6 @@ function AddNewItem() {
     location: "",
   });
 
-  const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null); // Reference to file input
   const [imagePath, setImagePath] = useState(""); // Temporary image path from backend
   const [uploading, setUploading] = useState(false);
@@ -95,7 +94,7 @@ function AddNewItem() {
                   theme:'colored'
               });
         setImagePath("");
-       // resetForm();
+        resetForm();
       } else {
         alert("Failed to add item.");
       }
@@ -130,16 +129,7 @@ function AddNewItem() {
 
  //Handle Form Reset (Deletes Uploaded Image)
  const resetForm = async () => {
-  if (imagePath) {
-    try {
-      await axios.delete(`http://localhost:8081/inventory/delete-image`, {
-        data: { imagePath }, // Send imagePath in request body
-      });
-      console.log("deleted image");
-    } catch (error) {
-      console.error("Error deleting image", error);
-    }
-  }
+ 
   // Clear form fields and image path
   setFormData({
     item_name: "",
@@ -182,10 +172,10 @@ const removeImage= async () => {
     <IoMdArrowRoundBack style={{fontSize:"24px",color:"white"}}/></button></Link>
 
     
-        <h2>Add New Item <SiGoogleforms /></h2>
-        <hr></hr>
+        <h2 className='other-page-title'>Add New Item <SiGoogleforms /></h2>
+        <hr className='green-line'></hr>
       <div className='form-container'>
-        <form>
+        <form className='add-form'>
             <div className='right-side'>
 
             {/* Image upload section */}
@@ -217,52 +207,52 @@ const removeImage= async () => {
 
             {/*form fields*/}
             <label className='input-label'>Item Name</label>
-            <input type="text" name="item_name" placeholder="Item Name" value={formData.item_name} onChange={handleChange} required />
+            <input className='add-form-input' type="text" name="item_name" placeholder="Item Name" value={formData.item_name} onChange={handleChange} required />
            
             <label className='input-label'>Category</label>
-            <input type="text" name="category" placeholder="Category" value={formData.category} onChange={handleChange} required />
+            <input className='add-form-input'type="text" name="category" placeholder="Category" value={formData.category} onChange={handleChange} required />
            
             <label className='input-label'>Current Quantity Of Item (Stock Available in Hand)
             <span className="tooltip">ℹ️
             <span className="tooltip-text">This is the amount of stock currently available.</span>
             </span>
             </label>
-            <input type="number" name="current_qty" placeholder="e.g., 50 (Items in stock)" value={formData.current_qty} onChange={handleChange} required />
+            <input className='add-form-input' type="number" name="current_qty" placeholder="e.g., 50 (Items in stock)" value={formData.current_qty} onChange={handleChange} required />
            
             <label className='input-label'>Maximum Quantity Of Item (Capacity Limit)
             <span className="tooltip">ℹ️
             <span className="tooltip-text">This is the maximum storage capacity the store can accomodate.</span>
             </span>
             </label>
-            <input type="number" name="max_qty" placeholder="e.g., 100 (Total storage capacity)" value={formData.max_qty} onChange={handleChange} required />
+            <input className='add-form-input'type="number" name="max_qty" placeholder="e.g., 100 (Total storage capacity)" value={formData.max_qty} onChange={handleChange} required />
             </div>
 
             <div className='left-side'>
-            <label className='input-label'>Unit Price Of Item</label>  
-            <input type="number" name="unit_price" placeholder="Unit Price" value={formData.unit_price} onChange={handleChange} required />
+            <label className='input-label'>Unit Price Of Item (LKR) </label>  
+            <input className='add-form-input'type="number" name="unit_price" placeholder="Unit Price" value={formData.unit_price} onChange={handleChange} required />
             
             <label className='input-label'>Purchase Date Of Item</label>
-            <input type="date" name="purchase_date" value={formData.purchase_date} onChange={handleChange} required />
+            <input className='add-form-input'type="date" name="purchase_date" value={formData.purchase_date} onChange={handleChange} required />
            
             <label className='input-label'>Expiration Date Of Item
             <span className="tooltip">ℹ️
             <span className="tooltip-text">Set the expiration date to alert on near expiry products </span>
             </span>
             </label>
-            <input type="date" name="expiration_date" value={formData.expiration_date} onChange={handleChange} required />
+            <input className='add-form-input'type="date" name="expiration_date" value={formData.expiration_date} onChange={handleChange} required />
           
             <label className='input-label'>Enter Threshold Level For Alerting On Low Stock
             <span className="tooltip">ℹ️
-            <span className="tooltip-text">This value will determine if the stock level is has reached this value,
+            <span className="tooltip-text">This value will determine if the stock level has reached this value,
               <br></br>
               and if reached will send an automated purchase order via email.
             </span>
             </span>
             </label>
-            <input type="number" name="reorder_level" placeholder="Reorder Level" value={formData.reorder_level} onChange={handleChange} required />
+            <input className='add-form-input' type="number" name="reorder_level" placeholder="Reorder Level" value={formData.reorder_level} onChange={handleChange} required />
            
             <label className='input-label'>Enter Where To Locate Item In Store</label>
-            <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} required />
+            <input className='add-form-input'type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} required />
             </div>
 
         </form>

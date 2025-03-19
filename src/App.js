@@ -23,6 +23,11 @@ function App() {
         {/*inventory routes */}
         <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />
         <Route path="/add-item" element={<Inventory.AddNewItem/>} />
+        <Route path="/expired-items" element={<Inventory.ExpiredItemPage/>} />
+        <Route path="/low-stock-items" element={<Inventory.LowStockItemPage/>} />
+        <Route path="/stock-worth" element={<Inventory.StockWorth/>} />
+
+
 
 
       </Routes>
