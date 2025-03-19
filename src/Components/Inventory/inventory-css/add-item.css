@@ -9,7 +9,7 @@
     margin-right: auto;
   }
 
-form {
+.add-form {
     display: flex;
     flex-direction: row;
     gap:100px
@@ -25,19 +25,19 @@ form {
     flex-direction: column;
 }
 
-h2{
+.other-page-title{
     text-align: left;
     margin-left: 10px;
 }
 
-hr{
+.green-line{
     width: 90%;
     margin-right: 10%;
     border: 3px solid #54B168;
     border-radius: 12px;
 }
 
-input {
+.add-form-input {
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #ccc;
