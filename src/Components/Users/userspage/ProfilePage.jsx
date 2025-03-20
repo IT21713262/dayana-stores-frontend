@@ -26,7 +26,7 @@ function ProfilePage() {
       <p>Email: {profileInfo.email}</p>
       <p>City: {profileInfo.city}</p>
       {profileInfo.role === "ADMIN" && (
-        <button>
+        <button className="profile-update-button">
           <Link to={`/update-user/${profileInfo.id}`}>Update This Profile</Link>
         </button>
       )}

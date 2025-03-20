@@ -1,10 +1,7 @@
 /* NAVBAR STYLING */
 
-*{
-  margin: 0;
-  }
-  
-  .link-button {
+
+.user-navbar .link-button {
   background-color: blue;
   color: white;
   padding: 10px;
@@ -12,7 +9,7 @@
   text-decoration: none;
   }
   
-  nav {
+  .user-navbar {
   background-color:  #54B168;
   padding: 10px 0;
   padding: 20px;
@@ -20,19 +17,19 @@
   font-weight: 600;
   }
   
-  ul {
+  .user-navbar ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
   text-align: center;
   }
   
-  li {
+  .user-navbar li {
   display: inline-block;
   margin: 0 10px;
   }
   
-  a {
+  .user-navbar a {
   color: #fff;
   text-decoration: none;
   padding: 10px 15px;
@@ -40,16 +37,16 @@
   transition: background-color 0.3s ease;
   }
   
-  a:hover {
+  .user-navbar a:hover {
   background-color: #555;
   }
   
   @media only screen and (max-width: 600px) {
-  nav {
+    .user-navbar nav {
   padding: 5px 0;
   }
   
-  li {
+  .user-navbar li {
   display: block;
   margin: 10px 0;
   }
@@ -59,69 +56,7 @@
   
   /* LOGIN STYLLING */
   /* index.css */
-  .auth-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  }
-  
-  h2 {
-  margin-top: 0;
-  }
-  
-  .form-group {
-  margin-bottom: 15px;
-  }
-  
-  label {
-  display: block;
-  font-weight: bold;
-  }
-  
-  input[type="email"],
-  input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  }
-  
-  button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #206e31;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-  background-color: #154a22;
-  }
-  
-  @media only screen and (max-width: 600px) {
-  .auth-container {
-  padding: 10px;
-  }
-  
-  input[type="email"],
-  input[type="password"],
-  button {
-  padding: 8px;
-  }
-  }
-  
-  /* REGISTRATION STYLLING */
-  /* + */
-  /* update user */
-  
-  .auth-container {
+  .login-form  {
   max-width: 400px;
   margin: 20px auto;
   padding: 20px;
@@ -130,25 +65,93 @@
   background-color: #f9f9f9;
   }
   
-  .auth-container h2 {
+  .login-form h2 {
+  margin-top: 0;
   margin-bottom: 20px;
   font-size: 24px;
   color:  #54B168;
+  text-align: center;
   }
   
-  .form-group {
+  .login-form .form-group {
   margin-bottom: 15px;
   }
   
-  .form-group label {
+  .login-form label {
+  display: block;
+ 
+  }
+  
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  }
+  
+  .login-form button {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #206e31;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+  .login-form button:hover {
+  background-color: #154a22;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .login-form .auth-container {
+  padding: 10px;
+  }
+  
+  .login-form input[type="email"],
+  .login-form input[type="password"],
+  .login-form button {
+  padding: 8px;
+  }
+  }
+  
+  /* REGISTRATION STYLLING */
+  /* + */
+  /* update user */
+  
+  .register-form  {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  
+  }
+  
+  .register-form  h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color:  #54B168;
+  text-align: center;
+  }
+  
+  .register-form .form-group {
+  margin-bottom: 15px;
+  }
+  
+  .register-form .form-group label {
   display: block;
   margin-bottom: 5px;
   font-size: 16px;
   }
   
-  .form-group input[type="text"],
-  .form-group input[type="email"],
-  .form-group input[type="password"] {
+  .register-form .form-group input[type="text"],
+  .register-form .form-group input[type="email"],
+  .register-form .form-group input[type="password"] {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
@@ -157,7 +160,7 @@
   font-size: 16px;
   }
   
-  button[type="submit"] {
+  .register-form button[type="submit"] {
   padding: 10px 20px;
   border: none;
   border-radius: 3px;
@@ -165,16 +168,21 @@
   color: #fff;
   font-size: 16px;
   cursor: pointer;
+
+  display: block;
+  width: 100%;
+  
+  
   }
   
-  button[type="submit"]:hover {
+  .register-form button[type="submit"]:hover {
   background-color: #154a22;
   }
   
   
   
   /* FOOTER STYKLING */
-  .footer{
+  .user-footer {
   background-color:  #54B168;
   color: white;
   padding: 20px;
@@ -201,11 +209,11 @@
   text-align: center;
   }
   
-  h2 {
+  .not-found-container h2 {
   color: #d9534f;
   }
   
-  p {
+  .not-found-container p {
   color: #333;
   }
   
@@ -231,36 +239,37 @@
   
   }
   
-  h2 {
+  .user-management-title {
   text-align: center;
   margin-bottom: 30px;
   color:  #54B168;
   }
   
-  table {
+  .user-management-table {
   width: 100%;
   border-collapse: collapse;
   }
   
-  th, td {
+  .user-management-table th, 
+  .user-management-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
   }
   
-  th {
+  .user-management-table th {
   background-color: #f2f2f2;
   }
   
-  tr:nth-child(even) {
+  .user-management-table tr:nth-child(even) {
   background-color: #f9f9f9;
   }
   
-  tr:hover {
+  .user-management-table tr:hover {
   background-color: #f2f2f2;
   }
   
-  button {
+  .user-management-container button {
   padding: 10px;
   background-color: #007bff;
   color: white;
@@ -269,16 +278,16 @@
   cursor: pointer;
   }
   
-  .reg-button {
+  .user-management-container .reg-button {
   padding: 15px;
   margin: 10px auto;
   }
   
-  button:hover {
+  .user-management-container button:hover {
   background-color: #0056b3;
   }
   
-  .delete-button {
+  .user-management-container .deleteuser-button {
   background-color: rgb(255, 9, 9);
   color: white;
   margin-bottom: 10px;
@@ -309,7 +318,7 @@
   font-size: 16px;
   }
   
-  .profile-page-container button {
+  .profile-page-container .profile-update-button {
   padding: 10px 20px;
   margin-right: 10px;
   border: none;
@@ -320,7 +329,7 @@
   cursor: pointer;
   }
   
-  .profile-page-container button:hover {
+  .profile-page-container .profile-update-button:hover {
   background-color: #093c72;
   }
   

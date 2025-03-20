@@ -35,7 +35,7 @@ function LoginPage() {
     };
 
     return (
-        <div className="auth-container">
+        <div className="login-form auth-container">
             <h2>Login</h2>
             {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit}>
