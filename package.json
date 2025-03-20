@@ -3,8 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "mdb-react-ui-kit": "^9.0.0",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.49",
+    "react-bootstrap": "^2.10.6",
+    "resolve-url-loader": "^5.0.0",
     "cra-template": "1.2.0",
     "micromodal": "^0.4.10",
     "react": "^19.0.0",
@@ -15,6 +23,7 @@
     "react-spinners": "^0.15.0",
     "react-toastify": "^11.0.5",
     "web-vitals": "^4.2.4"
+
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
