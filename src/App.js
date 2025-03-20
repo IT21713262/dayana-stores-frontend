@@ -9,8 +9,7 @@ import GenerateReport from "./Components/Suppliers/GenerateReport";
 import * as Inventory from "./Components/Inventory/InventoryRoutes";
 import LoginPage from '../src/Components/Users/auth/LoginPage'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './Components/Users/common/Navbar';
-import Footer from './Components/Users/common/Footer';
+
 import ProfilePage from '../src/Components/Users/userspage/ProfilePage';
 import UserService from './Components/Users/service/UserService';
 import RegistrationPage from '../src/Components/Users/auth/RegistrationPage';
@@ -21,9 +20,7 @@ function App() {
   return (
     <BrowserRouter>
      <AuthProvider>
-        <div className="App">
-          <Navbar />
-          <div className="content">
+      
       <Routes>
         {/*user routes */}
         <Route exact path="/" element={<LoginPage />} />
@@ -37,32 +34,31 @@ function App() {
                   
                   <Route path="/admin/user-management" element={<UserManagementPage />} />
                   <Route path="update-user/:userId" element={<UpdateUser />} />
+
+                  {/*supplier routes*/}
+                  <Route path="/supplierDashboard" element={<SupplierDashboard />} />
+                  <Route path="/addSuppliers" element={<AddSupplier />} />
+                  <Route path="/transactions" element={<SupplierTransactions />} />
+                  <Route path="/addTransaction" element={<AddTransaction />} />
+                  <Route path="/generateReport" element={<GenerateReport />} />
+
+                  {/*inventory routes */}
+                  <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />
+                  <Route path="/add-item" element={<Inventory.AddNewItem/>} />
+                  <Route path="/expired-items" element={<Inventory.ExpiredItemPage/>} />
+                  <Route path="/low-stock-items" element={<Inventory.LowStockItemPage/>} />
+                  <Route path="/stock-worth" element={<Inventory.StockWorth/>} />
+
+
                 </>
               )}
               <Route path='*' element={<Navigate to="/login" />} />%
-        {/*supplier routes*/}
-        <Route path="/supplierDashboard" element={<SupplierDashboard />} />
-        <Route path="/addSuppliers" element={<AddSupplier />} />
-        <Route path="/transactions" element={<SupplierTransactions />} />
-        <Route path="/addTransaction" element={<AddTransaction />} />
-        <Route path="/generateReport" element={<GenerateReport />} />
-        <Route path="/" element={<SupplierDashboard />} />
-
-        {/*inventory routes */}
-        <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />
-        <Route path="/add-item" element={<Inventory.AddNewItem/>} />
-        <Route path="/expired-items" element={<Inventory.ExpiredItemPage/>} />
-        <Route path="/low-stock-items" element={<Inventory.LowStockItemPage/>} />
-        <Route path="/stock-worth" element={<Inventory.StockWorth/>} />
-
-
+      
 
 
         
       </Routes>
-      </div>
-          <Footer />
-        </div>
+     
         </AuthProvider>
     </BrowserRouter>
   );

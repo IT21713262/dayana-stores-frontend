@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import UserService from "../service/UserService";
 import { useNavigate } from "react-router-dom";
 import '../UserManagement.css';
+import Footer from "../common/Footer";
+import UserNavbar from "../common/UserNavbar";
 
 function RegistrationPage(){
 
@@ -56,6 +58,8 @@ function RegistrationPage(){
     }
 
     return(
+        <>
+        <UserNavbar/>
         <div className="auth-container">
             <h2>Registration</h2>
                 <form onSubmit={handleSubmit}>
@@ -83,6 +87,8 @@ function RegistrationPage(){
                 </form>
 
         </div>
+        <Footer/>
+        </>
     )
 
 }

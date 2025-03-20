@@ -18,6 +18,12 @@ export const SidebarData=[
         icon:MdInventory,
         className:'nav-text'
     },
+    {
+        title:'Profile',
+        path:'/profile',
+        icon:MdInventory,
+        className:'nav-text'
+    },
    
 
 ];

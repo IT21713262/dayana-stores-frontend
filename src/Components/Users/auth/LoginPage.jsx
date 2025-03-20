@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import UserService from '../service/UserService';
 import { AuthContext } from '../auth/AuthContext';
 import '../UserManagement.css';
+import Footer from '../common/Footer';
+import UserNavbar from '../common/UserNavbar';
 
 
 function LoginPage() {
@@ -21,7 +23,7 @@ function LoginPage() {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role.toUpperCase()); // Normalize role
                 refreshAuthState(); // Refresh state after login
-                navigate('/profile');
+                navigate('/supplierDashboard');
             } else {
                 setError(userData.message);
             }
@@ -35,6 +37,8 @@ function LoginPage() {
     };
 
     return (
+        <>
+        <UserNavbar/>
         <div className="auth-container">
             <h2>Login</h2>
             {error && <p className="error-message">{error}</p>}
@@ -50,6 +54,8 @@ function LoginPage() {
                 <button type="submit">Login</button>
             </form>
         </div>
+        <Footer/>
+        </>
     );
 }
 

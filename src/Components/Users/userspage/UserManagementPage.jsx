@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
 import '../UserManagement.css';
+import Footer from "../common/Footer";
+import UserNavbar from "../common/UserNavbar";
 function UserManagementPage() {
     const [users, setUsers] = useState([]);
 
@@ -36,6 +38,8 @@ function UserManagementPage() {
         }
     }
     return(
+        <>
+        <UserNavbar/>    
         <div className="user-management-container">
             <h2>Users Management Page</h2>
             <button className="reg-button"><Link to="/register">Add User</Link></button>
@@ -63,6 +67,8 @@ function UserManagementPage() {
                 </tbody>
             </table>
         </div>
+        <Footer/>
+        </>
     )
 }
 

@@ -5,7 +5,7 @@ import { AuthContext } from '../auth/AuthContext';
 import UserService from '../service/UserService';
 import '../UserManagement.css';
 
-function Navbar() {
+function UserNavbar() {
     const { isAuthenticated, isAdmin, refreshAuthState } = useContext(AuthContext);
 
     const handleLogout = () => {
@@ -29,4 +29,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default UserNavbar;
