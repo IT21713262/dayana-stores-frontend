@@ -18,6 +18,12 @@ export const SidebarData=[
         icon:MdInventory,
         className:'nav-text'
     },
+    {
+        title:'Employee',
+        path:'/EmployeeDashboard',
+        icon:MdInventory,
+        className:'nav-text'
+    },
    
 
 ];

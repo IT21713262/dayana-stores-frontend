@@ -1,0 +1,214 @@
+/* EmployeeDashboard.css */
+
+/* Container */
+.emp-dashboard-container {
+    padding: 24px;
+  }
+  /* Header Bar Styles */
+.emp-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centers items vertically */
+  margin-bottom: 20px;
+  background-color: #206D0F;
+  padding: 4px 10px; /* Adjust spacing */
+
+  
+}
+.emp-header-buttons {
+  display: flex;
+  gap: 5px; /* Reduced gap between buttons */
+}
+.emp-header-button {
+  background-color: #266d16;
+  color: white;
+  padding: 0 10px;  /* Only horizontal padding */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 35px;     /* Explicit height */
+  line-height: 30px; /* Align text vertically */
+
+}
+
+
+.emp-header-button:hover {
+  background-color: #2e873f;
+}
+  /* Heading */
+  .emp-dashboard-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: white;
+    
+  }
+  
+  /* Form Fields */
+  .emp-form-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .emp-form-container input,
+  .emp-form-container select {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  .emp-add-button {
+    background-color: #16a34a;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .emp-add-button:hover {
+    background-color: #15803d;
+  }
+  
+  /* Table */
+  .emp-employee-table {
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .emp-employee-table th,
+  .emp-employee-table td {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .emp-employee-table thead {
+    background: #f1f5f9;
+  }
+  
+  .emp-employee-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .emp-employee-table tbody tr:hover {
+    background: #f8fafc;
+  }
+  
+  /* Action Buttons */
+  .emp-action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .emp-action-buttons svg {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .emp-action-buttons svg:hover {
+    transform: scale(1.1);
+  }
+  
+  .emp-edit-button {
+    color: #facc15;
+  }
+  
+  .emp-delete-button {
+    color: #dc2626;
+  }
+  
+  .emp-view-button {
+    color: #3b82f6;
+  }
+  
+  /* Edit Form */
+  .emp-edit-form-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  
+  .emp-edit-form-container input {
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  .emp-update-button {
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .emp-update-button:hover {
+    background-color: #1d4ed8;
+  }
+  /* EmployeeDashboard.css */
+.emp-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Adjust the spacing as needed */
+  margin-bottom: 20px;
+}
+
+.emp-category-filter {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+
+}
+/* Custom styles for the confirmation toast */
+.emp-confirmation-toast-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.emp-confirmation-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.emp-confirm-btn, .emp-cancel-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.emp-confirm-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.emp-cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.emp-confirm-btn:hover {
+  background-color: #45a049;
+}
+
+.emp-cancel-btn:hover {
+  background-color: #e53935;
+}
+
+
+
+
+
