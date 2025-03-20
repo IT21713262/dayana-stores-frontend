@@ -17,7 +17,7 @@ function UserNavbar() {
     };
 
     return (
-        <nav>
+        <nav className="user-navbar">
             <ul>
                 {!isAuthenticated && <li><Link to="/">Dayana Stores</Link></li>}
                 {!isAuthenticated && <li><Link to="/register">Register</Link></li>} {/* Show Register for new users */}

@@ -39,17 +39,17 @@ function LoginPage() {
     return (
         <>
         <UserNavbar/>
-        <div className="auth-container">
+        <div className="login-form auth-container">
             <h2>Login</h2>
             {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email"/>
                 </div>
                 <div className="form-group">
                     <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password"/>
                 </div>
                 <button type="submit">Login</button>
             </form>

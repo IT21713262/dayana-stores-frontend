@@ -1,0 +1,111 @@
+/* AddEmployee.css */
+
+.emp-employee-form-container {
+    width: 70%; /* Adjust width to make it smaller */
+    max-width: 900px; /* Ensure it doesn't get too large */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px; /* Reduce padding */
+    background-color: #f9f9f9;
+    margin: 20px auto; /* Center the container */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a light shadow for better visibility */
+    align-items: center; /* Center all form elements */
+  }
+  
+  
+  .emp-employee-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    align-items: center; /* Center all form elements */
+  }
+  
+  input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .emp-employee-form input,
+.emp-employee-form select {
+  width: 96%; /* Ensures all input fields take up the same width */
+  max-width: 400px; /* Adjust as needed */
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.emp-required-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+  
+  .emp-username {
+    color: green;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .emp-role {
+    color: gray;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .emp-menu-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .emp-menu-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .emp-menu-item.active {
+    background-color: green;
+    color: white;
+  }
+  
+  
+  .emp-main-content {
+    flex: 1;
+    padding: 30px;
+    background: #f9f9f9;
+  }
+  
+  .emp-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+ 
+.emp-add-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    width: 100px; /* Optional: Adjust width */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: green;
+    border: 6px solid green;
+    color: white;
+}
+  
+  .emp-add-btn:hover {
+    background-color: darkgreen;
+  }
+
+  .emp-required-icon {
+    color: rgb(195, 89, 89);  /* Set icon color to red */
+    font-size: 14px; /* Adjust size if necessary */
+    margin-left: 5px; /* Add some spacing */
+    font-weight: bold;
+  }

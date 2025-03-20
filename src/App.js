@@ -16,6 +16,13 @@ import RegistrationPage from '../src/Components/Users/auth/RegistrationPage';
 import UserManagementPage from '../src/Components/Users/userspage/UserManagementPage';
 import UpdateUser from '../src/Components/Users/userspage/UpdateUser';
 import { AuthProvider } from './Components/Users/auth/AuthContext';
+import EmployeeDashboard from "./Components/Employee/EmployeeDashboard";
+import AddEmployee from "./Components/Employee/AddEmployee";
+import ViewEmployee from "./Components/Employee/ViewEmployee";
+import EditEmployee from "./Components/Employee/EditEmployee";
+import ManageAttendance from "./Components/Employee/ManageAttendance";
+import AttendanceSummary from "./Components/Employee/AttendanceSummary";
+
 function App() {
   return (
     <BrowserRouter>
@@ -57,6 +64,15 @@ function App() {
 
 
         
+         {/*Employee routes */}
+         <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
+         <Route path="/AddEmployee" element={<AddEmployee />} />
+         <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
+         <Route path="/EditEmployee/:id" element={<EditEmployee />} />
+         <Route path="/ManageAttendance" element={<ManageAttendance />} />
+         <Route path="/AttendanceSummary" element={<AttendanceSummary />} />
+
+
       </Routes>
      
         </AuthProvider>
