@@ -85,8 +85,8 @@ const AttendanceSummary = () => {
             <th>Name</th>
             <th>Job Role</th>
             <th>Phone No</th>
-            <th>Attendance Count</th>
-            <th>Leave Count</th>
+            <th>Attendance Count ( Current Month)</th>
+            <th>Leave Count (Annual)</th>
           </tr>
         </thead>
         <tbody>

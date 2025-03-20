@@ -3,9 +3,9 @@ import axios from "axios";
 import "./AddEmployee.css";
 import NavBar from "../NavBar";
 import { useNavigate } from "react-router-dom";
-import { FaExclamationCircle } from "react-icons/fa"; // Import required icon from Font Awesome
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import the CSS for react-toastify
+import { FaExclamationCircle } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BASE_URL = "http://localhost:8081/employee";
 
@@ -20,68 +20,62 @@ const AddEmployee = () => {
     nic: "",
     address: "",
     category: "",
-    nicNumber: "",
     basicSalary: "",
   });
 
-  const navigate = useNavigate(); // Initialize navigate
+  const [errors, setErrors] = useState({}); // Track validation errors
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // Clear error message when user starts typing
+    setErrors({ ...errors, [e.target.name]: "" });
+  };
+
+  
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.firstName) newErrors.firstName = "First name is required.";
+    if (!formData.lastName) newErrors.lastName = "Last name is required.";
+    if (!formData.phoneNumber) newErrors.phoneNumber = "Phone number is required.";
+    if (!formData.email) newErrors.email = "Email is required.";
+    if (!formData.nic) newErrors.nic = "NIC number is required.";
+    if (!formData.jobRole) newErrors.jobRole = "Job role is required.";
+    if (!formData.basicSalary) newErrors.basicSalary = "Daily salary is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Returns true if no errors
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Check if all required fields are filled
-    if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.phoneNumber ||
-      !formData.basicSalary ||
-      !formData.jobRole ||
-      !formData.nic
-    ) {
+    
+    if (!validateForm()) {
       toast.error("Please fill all required fields.", {
         position: "top-right",
         autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
       });
       return;
     }
 
-    // If all required fields are filled, submit the form
     axios
       .post(`${BASE_URL}/add`, formData)
       .then((response) => {
-        console.log("Employee added successfully:", response.data);
         toast.success("Employee added successfully!", {
           position: "top-right",
           autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
         });
-          // Refresh the page after a short delay to show the success message
-          setTimeout(() => {
-            window.location.reload(); // Reload the page after the toast message
-          }, 1000); // Wait for 3 seconds before refreshing the page
-        })
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
       .catch((error) => {
-        console.error("Error adding employee:", error);
-        toast.error("An error occurred while adding the employee.", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+        toast.error("An error occurred while adding the employee.");
       });
   };
+
 
   const handleManageAttendanceClick = () => {
     navigate("/ManageAttendance"); // Navigate to Manage Attendance page
@@ -115,7 +109,7 @@ const AddEmployee = () => {
           <form onSubmit={handleSubmit} className="emp-employee-form">
             <div className="emp-required-field">
               <input
-                name="emp-firstName"
+                name="firstName"
                 placeholder="First Name"
                 onChange={handleChange}
                 required
@@ -178,10 +172,13 @@ const AddEmployee = () => {
             </div>
             <div className="emp-required-field">
               <input
+                type="number"
                 name="basicSalary"
-                placeholder="Daily Salary"
+                placeholder="Daily Salary (Rs.)"
                 onChange={handleChange}
                 required
+                min="0"
+                step="0.01"
               />
               <FaExclamationCircle className="emp-required-icon" />
             </div>
