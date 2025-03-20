@@ -108,7 +108,7 @@ const EmployeeDashboard = () => {
         <thead>
           <tr>
             <th>Employee ID</th>
-            <th>Category</th>
+            <th>Job Role</th>
             <th>Name</th>
             <th>Email</th>
             <th>Monthly Salary</th>
@@ -120,10 +120,10 @@ const EmployeeDashboard = () => {
             filteredEmployees.map((emp) => (
               <tr key={emp.id}>
                 <td>{emp.id}</td>
-                <td>{emp.category}</td>
+                <td>{emp.jobRole}</td>
                 <td>{`${emp.firstName} ${emp.lastName}`}</td>
                 <td>{emp.email}</td>
-                <td>{emp.monthlySalary}</td>
+                <td>{`Rs. ${emp.monthlySalary.toLocaleString()}`}</td>
                 <td className="emp-action-buttons">
                   <FaEye className="emp-view-button" onClick={() => handleNavigation(`/ViewEmployee/${emp.id}`)} />
                   <FaEdit className="emp-edit-button" onClick={() => handleNavigation(`/EditEmployee/${emp.id}`)} />

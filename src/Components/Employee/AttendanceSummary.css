@@ -1,35 +1,37 @@
 /* Styling for the search bar and calendar section */
 .emp-attendance-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
+  display: flex;
+  justify-content: space-between; /* Align elements to opposite ends */
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
 
-
-/* Container for search bar and icon */
 .emp-search-container {
-    position: relative;
-    width: 188px; /* Adjust width as needed */
-  }
-  
-  /* Styling for the search bar */
-  .emp-search-bar {
-    width: 100%;
-    padding: 10px 0px 9px 5px; /* Adjust padding for icon positioning */
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Push to the right */
+}
+
+.emp-search-bar {
+  width: 250px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-right: 5px; /* Add space before the icon */
+}
   
   /* Styling for the search icon */
   .emp-search-icon {
-    position: absolute;
+    /* position: absolute; */
     top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
+    right: 30px;
+    transform: translateY(-8%);
     font-size: 18px;
     color: #333;
     pointer-events: none; /* Prevent clicking the icon */
+    margin-left: -13%;
   }
   
   .emp-calendar-container {

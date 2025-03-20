@@ -160,7 +160,7 @@ const EditEmployee = () => {
           </div>
           <div className="emp-form-group">
             <label>Category:</label>
-            <input type="text" value={employee.category} readOnly />
+            <input type="text"  name ="category" value={formData.category} onChange={handleChange}/>
           </div>
           <div className="emp-form-group">
             <label>NIC:</label>

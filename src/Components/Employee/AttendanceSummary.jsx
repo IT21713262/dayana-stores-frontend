@@ -77,10 +77,6 @@ const AttendanceSummary = () => {
           />
           <FaSearch className="emp-search-icon" />
         </div>
-
-        <div className="emp-calendar-container">
-          <input type="date" className="emp-calendar" /> {/* Calendar input */}
-        </div>
       </div>
       <table className="emp-employee-table">
         <thead>

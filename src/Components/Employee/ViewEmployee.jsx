@@ -100,9 +100,13 @@ const ViewEmployee = () => {
             <input type="text" value={employee.nic} readOnly />
           </div>
           <div className="emp-form-group">
-            <label>Daily Salary:</label>
-            <input type="number" value={employee.basicSalary} readOnly />
-          </div>
+          <label>Daily Salary:</label>
+          <input 
+            type="text" 
+            value={`Rs. ${employee.basicSalary}`} 
+            readOnly 
+          />
+        </div>
         </form>
       </div>
     </div>

@@ -140,8 +140,18 @@ const AddEmployee = () => {
               />
               <FaExclamationCircle className="emp-required-icon" />
             </div>
+            <div className="emp-required-field">
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              onChange={handleChange}
+              required
+            />
+            <FaExclamationCircle className="emp-required-icon" />
+          </div>
             <input name="address" placeholder="Address" onChange={handleChange} />
-            <input name="email" placeholder="Email" onChange={handleChange} />
+            
             <select name="category" onChange={handleChange}>
               <option value="">--Select type--</option>
               <option value="Permanent">Permanent</option>
@@ -169,18 +179,17 @@ const AddEmployee = () => {
             <div className="emp-required-field">
               <input
                 name="basicSalary"
-                placeholder="Basic Salary"
+                placeholder="Daily Salary"
                 onChange={handleChange}
                 required
               />
               <FaExclamationCircle className="emp-required-icon" />
             </div>
-            <button type="emp-submit" className="emp-add-btn">
-              Add Employee
+              <div className="emp-submit-container">
+            <button type="submit" className="emp-add-btn">
+              Save
             </button>
-            <button type="emp-button" className="emp-back-btn">
-              Back
-            </button>
+          </div>
           </form>
         </div>
       </div>
