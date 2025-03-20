@@ -61,23 +61,23 @@ function RegistrationPage(){
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Name : </label>
-                        <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+                        <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter your username"  required />
                     </div>
                     <div className="form-group">
                         <label>Email : </label>
-                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
+                        <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email"  required />
                     </div>
                     <div className="form-group">
                         <label>Password : </label>
-                        <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
+                        <input type="password" name="password" value={formData.password} onChange={handleInputChange} placeholder="Enter a secure password"  required />
                     </div>
                     <div className="form-group">
-                        <label>Role : </label>
-                        <input type="text" name="role" value={formData.role} onChange={handleInputChange} required />
+                        <label>Role (USER or ADMIN) : </label>
+                        <input type="text" name="role" value={formData.role} onChange={handleInputChange} placeholder="Enter USER or ADMIN" required />
                     </div>
                     <div className="form-group">
                         <label>City : </label>
-                        <input type="text" name="city" value={formData.city} onChange={handleInputChange} required />
+                        <input type="text" name="city" value={formData.city} onChange={handleInputChange} placeholder="Enter your city"  required />
                     </div>
                     <button type="submit">Register</button>
                 </form>
