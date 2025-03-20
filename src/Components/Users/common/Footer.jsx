@@ -3,7 +3,7 @@ import '../UserManagement.css';
 const Footer = () => {
   return (
     <div>
-        <footer className="footer">
+        <footer className="user-footer footer">
             <span>Dayana Stores | All Rights Reserved &copy; {new Date().getFullYear()}</span>
         </footer>
       

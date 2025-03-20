@@ -56,7 +56,7 @@ function RegistrationPage(){
     }
 
     return(
-        <div className="auth-container">
+        <div className="register-form auth-container">
             <h2>Registration</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
