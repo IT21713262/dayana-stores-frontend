@@ -10,7 +10,7 @@ import SupplierReport from "./Components/Suppliers/SupplierReport";
 import ViewSupplier from "./Components/Suppliers/viewSupplier";
 import ViewTransaction from "./Components/Suppliers/ViewTransaction";
 import UpdateTransaction from "./Components/Suppliers/UpdateTransaction";
-
+import TransactionReport from "./Components/Suppliers/TransactionReport";
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
         <Route path="/supplierReport" element={<SupplierReport />} />
         <Route path="/viewSupplier/:id" element={<ViewSupplier />} />
         <Route path="/viewTransaction/:id" element={<ViewTransaction />} />
+        <Route path="/transactionReport" element={<TransactionReport />} />
 
         <Route path="/" element={<SupplierDashboard />} /> {/* Default route */}
 

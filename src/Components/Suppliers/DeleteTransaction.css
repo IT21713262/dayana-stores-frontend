@@ -1,0 +1,63 @@
+/* DeleteTransaction.css */
+.delete-transaction-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .delete-card {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+  }
+  
+  .delete-card h2 {
+    margin-bottom: 20px;
+    color: #c0392b;
+  }
+  
+  .delete-card p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .delete-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .delete-btn {
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .delete-btn.confirm {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .delete-btn.confirm:hover {
+    background-color: #c0392b;
+  }
+  
+  .delete-btn.cancel {
+    background-color: #7f8c8d;
+    color: #fff;
+  }
+  
+  .delete-btn.cancel:hover {
+    background-color: #5d6d7e;
+  }
+  

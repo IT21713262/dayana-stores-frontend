@@ -16,10 +16,11 @@ export default function SupplierReport() {
   }, []);
 
   const generatePDF = useReactToPrint({
-    content: () => componentPDF.current,
-    documentTitle: "Supplier Report",
-    onAfterPrint: () => alert("Report was sent to print"),
-  });
+      contentRef: componentPDF,
+      documentTitle: "Supplier_Report",
+      onAfterPrint: () => alert("PDF has been generated successfully!"),
+    });
+  
 
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(suppliers);
@@ -33,6 +34,7 @@ export default function SupplierReport() {
       <div className="report-container">
         <h2>Supplier Report</h2>
         <div ref={componentPDF} className="table-container">
+        <div className="title"><h2>Supplier Report</h2></div>
           <table className="table">
             <thead>
               <tr>
