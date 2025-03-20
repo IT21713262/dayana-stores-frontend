@@ -1,0 +1,181 @@
+.form-container {
+    width: fit-content;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.add-form {
+    display: flex;
+    flex-direction: row;
+    gap:100px
+  }  
+
+.right-side{
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side{
+    display: flex;
+    flex-direction: column;
+}
+
+.other-page-title{
+    text-align: left;
+    margin-left: 10px;
+}
+
+.green-line{
+    width: 90%;
+    margin-right: 10%;
+    border: 3px solid #54B168;
+    border-radius: 12px;
+}
+
+.add-form-input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+  }
+
+.button-group{
+    margin-left: 340px;
+    display: flex;
+    gap: 10px;
+}
+  
+.add-item-btn {
+    background: #54B168;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+
+.add-item-btn:hover{
+  background: #206e31;
+  transition: background-color 0.3s ease;
+}  
+  
+.cancel-btn {
+    background: #f44336;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+
+  }
+
+.cancel-btn:hover{
+    background: #c2342a;
+    transition: background-color 0.3s ease;
+  }  
+
+.image-upload-box {
+  width: 300px;
+  height: 200px;
+  border: 2px dashed #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+}
+
+.upload-placeholder {
+  text-align: center;
+  color: #777;
+}
+
+.choose-file-btn {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.choose-file-btn:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
+
+}
+
+.preview-image {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.remove-image-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-image-btn:hover {
+  background: darkred;
+}
+
+/* Labels */
+.input-label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  position: relative;
+}
+   
+
+/* Tooltip */
+.tooltip {
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 5px;
+  position: relative;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}

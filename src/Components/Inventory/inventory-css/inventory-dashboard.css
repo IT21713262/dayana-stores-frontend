@@ -1,0 +1,462 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    padding: 20px;
+    margin-top: 30px;
+  }
+  
+  .card {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    width: 240px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .icon-container {
+    background-color: rgba(0, 200, 83, 0.1); 
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px; /* Space between icon and text */
+
+  }
+
+  .text-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 12px; /* Space between icon and text */
+
+  }
+  
+  .icon {
+    font-size: 24px;
+    color: #00C853;
+  }
+  
+  .title {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 1px; /* Reduce space between title and value */
+  }
+  
+  .amount {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .add-new-item-button{
+    display: flex; /* Aligns icon and text horizontally */
+    width: fit-content;
+    align-items: center; /* Vertically aligns icon and text */
+    padding: 10px 15px; /* Adds padding around the button */
+    font-size: 16px; /* Adjusts button text size */
+    background-color: #54B168; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Removes default border */
+    border-radius: 10px; /* Makes the button rounded */
+    cursor: pointer; /* Adds pointer cursor on hover */
+    margin-top: 20px;
+    margin-left: 75px;   
+  }
+  
+  .add-new-item-button:hover{
+    background-color: #206e31;     /* Button background color */
+    transition: background-color 0.3s ease;
+  }
+
+  .add-icon {
+    font-size: 20px; /* Adjusts the icon size */
+    margin-right: 3px; /* Adds space between icon and text */
+  }
+  
+
+  .table-container{
+    background-color: white;
+    width: 90%  ;
+    margin-top: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 9px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .item-table{
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .item-table th {
+    background-color: #f4f4f4;
+    /* border: 1px solid #ddd; */
+
+    padding: 18px;
+  }
+  
+  .item-table td {
+    padding: 8px;
+    text-align: center;
+    /*border: 1px solid #ddd*/;
+
+  }
+
+  .qty-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between items */
+}
+
+  .progress-container {
+    flex-grow: 1;
+    width: 150px;
+    height: 14px;
+    background-color: #ddd;
+    border-radius: 13px;
+    overflow: hidden;
+    margin-top: 5px;
+    position: relative;
+}
+
+  .progress-bar {
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    line-height: 25px; /* Center text vertically */
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 4px 11px;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    margin-left: 4px;
+    white-space: nowrap;
+    margin-top: 4px;
+
+  }
+
+  .meatball-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .menu-dropdown {
+    position: absolute;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    z-index: 10;
+  }
+  
+  .menu-dropdown button {
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-dropdown button:hover {
+    background: #f4f4f4;
+    
+  }
+
+  .menu-icon{
+   font-size: 24px;
+   border-radius: 20px;
+  }
+  
+  .menu-icon:hover{
+    background-color:whitesmoke ;
+    border-radius: 20px;
+    transition:  background-color 0.3s ease;
+
+  }
+
+  /* Modal overlay to cover the entire screen for the delete*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal box */
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.confirm-button, .cancel-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #F44336;
+  color: white;
+}
+
+/* edit side pane css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  padding: 0px 20px;
+  overflow: auto;
+  scrollbar-width:thin;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-heading {
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #54B168;
+}
+
+.sidebar-content label {
+  margin-top: 7px;
+  color: rgb(81, 80, 80);
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.sidebar-content input {
+  padding: 8px;
+  margin-bottom: 5px;
+  width: 95%;
+}
+
+.button-group-edit {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-left: 177px;
+  gap: 10px;
+}
+
+.button-group-edit button {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.button-group-edit .cancel {
+  background: red;
+  color: white;
+}
+
+.edit-preview-image {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.change-image-btn
+{
+  background-color: #54B168;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  width: 40%;
+  margin-top: 9px;
+  cursor: pointer;
+}
+
+
+/* Modal overlay */
+.view-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal box */
+.view-modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 450px;
+  max-height: 80vh;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+/* Stylish scroll bar */
+.view-modal::-webkit-scrollbar {
+  width: 6px;
+}
+.view-modal::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+.view-modal::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Modal heading */
+.view-modal-h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+  border-bottom: 2px solid #54B168;
+  padding-bottom: 10px;
+}
+
+/* Product image */
+.product-image {
+  display: block;
+  margin: 0 auto 15px auto; /* Centers the image */
+  width: 150px; /* Smaller size */
+  height: auto;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
+
+/* Details container */
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Label-value pairs */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+/* Labels */
+.detail-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Values */
+.detail-value {
+  font-size: 16px;
+  color: #222;
+  text-align: right;
+}
+
+/* Modal buttons */
+.view-modal-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+/* css for the container witth aadd button and the search bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between; /* Space between items */
+  align-items: center;
+  gap: 10px; /* Adjust spacing */
+  padding: 10px 0;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 500px;
+  margin-top: 15px;
+}
+
+.search-bar {
+  width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #888;
+}
+
+.clear-btn:hover {
+  color: #555;
+}
