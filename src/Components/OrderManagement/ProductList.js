@@ -1,24 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./OrderManagement.css";
 
-// Add to Cart function to store items in localStorage
-const addToCart = (product, quantity) => {
-  const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const existingItemIndex = existingCart.findIndex((item) => item.id === product.id);
+// Add to Cart function (store in localStorage + call backend)
+const addToCart = async (product, quantity) => {
+  try {
+    // Call backend to add to cart
+    await fetch(
+      `http://localhost:8081/cart/add?productId=${product.id}&quantity=${quantity}`,
+      { method: "POST" }
+    );
 
-  if (existingItemIndex !== -1) {
-    existingCart[existingItemIndex].quantity += quantity;
-  } else {
-    existingCart.push({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      quantity: quantity,
-    });
+    // Update localStorage for UI sync
+    const existingCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItemIndex = existingCart.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (existingItemIndex !== -1) {
+      existingCart[existingItemIndex].quantity += quantity;
+    } else {
+      existingCart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: quantity,
+      });
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(existingCart));
+    window.dispatchEvent(new Event("storage"));
+    alert("Product added to cart!");
+  } catch (error) {
+    console.error("Error adding product to cart:", error);
+    alert("Failed to add product to cart.");
   }
-
-  localStorage.setItem('cartItems', JSON.stringify(existingCart));
-  window.dispatchEvent(new Event('storage'));
 };
 
 // Category Dropdown Component
@@ -44,7 +59,7 @@ const ProductCard = ({ product }) => {
     <div className="product-card">
       <img src={product.image} alt={product.name} className="product-image" />
       <h4>{product.name}</h4>
-      <p>Rs. {product.price} / {product.unit}</p>
+      <p>Rs. {product.price}</p>
       <div className="product-actions">
         <label>Quantity</label>
         <input
@@ -64,18 +79,32 @@ const ProductCard = ({ product }) => {
   );
 };
 
-// Sample Product Data
-const products = [
-  { id: 1, name: "Keeri Samba 1KG", price: 235, unit: "kg", image: "/Images/keerisamba.png", category: "grains" },
-  { id: 2, name: "Mysore Dhal 1KG", price: 335, unit: "kg", image: "/Images/dhal.jpg", category: "grains" },
-  { id: 3, name: "Chocolate Biscuit 400g", price: 520, unit: "unit", image: "/Images/chocoBiscuit.png", category: "snacks" },
-  { id: 4, name: "Rich Life Fresh Milk 1L", price: 480, unit: "unit", image: "/Images/freshmilk.jpg", category: "beverages" },
-  { id: 5, name: "Coca Cola 1050ml", price: 270, unit: "unit", image: "/Images/cocacola.jpg", category: "beverages" },
-  { id: 6, name: "Wijaya Noodles 400g", price: 350, unit: "unit", image: "/Images/noodles.jpg", category: "snacks" }
-];
-
 const ProductList = () => {
+  const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8081/inventory/all-items"
+        );
+        const data = await response.json();
+        const mappedProducts = data.map((item) => ({
+          id: item.item_id,
+          name: item.item_name,
+          price: item.unit_price,
+          image: item.item_image,
+          category: item.category ? item.category.toLowerCase() : "others",
+        }));
+        setProducts(mappedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const filteredProducts = category
     ? products.filter((product) => product.category === category)

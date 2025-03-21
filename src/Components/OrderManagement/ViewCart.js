@@ -8,49 +8,64 @@ const ViewCart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
 
-  const loadCart = () => {
-    const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-    setCartItems(storedCart);
+  const loadCartFromAPI = async () => {
+    try {
+      const response = await fetch('http://localhost:8081/cart/items');
+      const data = await response.json();
+      setCartItems(data);
+    } catch (error) {
+      console.error('Error fetching cart items:', error);
+    }
   };
 
   useEffect(() => {
-    loadCart();
-    window.addEventListener('storage', loadCart);
-    return () => window.removeEventListener('storage', loadCart);
+    loadCartFromAPI();
   }, []);
 
-  const updateCartStorage = (updatedCart) => {
-    setCartItems(updatedCart);
-    localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-    window.dispatchEvent(new Event('storage'));
+  const handleUpdateQuantity = async (itemId, newQuantity) => {
+    try {
+      await fetch(`http://localhost:8081/cart/update/${itemId}?quantity=${newQuantity}`, {
+        method: 'PATCH',
+      });
+      loadCartFromAPI();
+    } catch (error) {
+      console.error('Error updating cart item quantity:', error);
+    }
   };
 
-  const handleIncrement = (itemId) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    updateCartStorage(updatedCart);
+  const handleIncrement = (cartId) => {
+    const item = cartItems.find((cartItem) => cartItem.id === cartId);
+    if (item) {
+      handleUpdateQuantity(item.item.item_id, item.quantity + 1);
+    }
   };
 
-  const handleDecrement = (itemId) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === itemId && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    );
-    updateCartStorage(updatedCart);
+  const handleDecrement = (cartId) => {
+    const item = cartItems.find((cartItem) => cartItem.id === cartId);
+    if (item && item.quantity > 1) {
+      handleUpdateQuantity(item.item.item_id, item.quantity - 1);
+    }
   };
 
-  const handleDelete = (itemId) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    updateCartStorage(updatedCart);
+  const handleDelete = async (cartId) => {
+    try {
+      await fetch(`http://localhost:8081/cart/remove/${cartId}`, {
+        method: 'DELETE',
+      });
+      loadCartFromAPI();
+    } catch (error) {
+      console.error('Error removing cart item:', error);
+    }
   };
 
   const handleCheckout = () => {
     navigate('/place-order');
   };
 
-  const subTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const subTotal = cartItems.reduce(
+    (total, item) => total + item.item.unit_price * item.quantity,
+    0
+  );
 
   return (
     <>
@@ -64,6 +79,7 @@ const ViewCart = () => {
             <table className="cart-table">
               <thead>
                 <tr>
+                  <th>Item Image</th>
                   <th>Item Name</th>
                   <th>Unit Price (Rs.)</th>
                   <th>Quantity</th>
@@ -72,22 +88,35 @@ const ViewCart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartItems.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>{item.price.toFixed(2)}</td>
+                {cartItems.map((cartItem) => (
+                  <tr key={cartItem.id}>
                     <td>
-                      <button onClick={() => handleDecrement(item.id)} disabled={item.quantity <= 1}>
+                      <img
+                        src={cartItem.item.item_image}
+                        alt={cartItem.item.item_name}
+                        width="80"
+                      />
+                    </td>
+                    <td>{cartItem.item.item_name}</td>
+                    <td>{cartItem.item.unit_price.toFixed(2)}</td>
+                    <td>
+                      <button
+                        onClick={() => handleDecrement(cartItem.id)}
+                        disabled={cartItem.quantity <= 1}
+                      >
                         <FaMinus />
                       </button>
-                      <span className="quantity-value">{item.quantity}</span>
-                      <button onClick={() => handleIncrement(item.id)}>
+                      <span className="quantity-value">{cartItem.quantity}</span>
+                      <button onClick={() => handleIncrement(cartItem.id)}>
                         <FaPlus />
                       </button>
                     </td>
-                    <td>{(item.price * item.quantity).toFixed(2)}</td>
+                    <td>{(cartItem.item.unit_price * cartItem.quantity).toFixed(2)}</td>
                     <td>
-                      <FaTrash className="delete-icon" onClick={() => handleDelete(item.id)} />
+                      <FaTrash
+                        className="delete-icon"
+                        onClick={() => handleDelete(cartItem.id)}
+                      />
                     </td>
                   </tr>
                 ))}

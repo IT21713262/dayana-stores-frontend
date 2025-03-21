@@ -42,7 +42,7 @@ function OrderNavBar() {
         <img src={logo} alt="Logo" className="nav-logo" />
         <h2 className="nav-title">Shop all your grocery needs at Dayana Stores</h2>
         <div className="cart-container">
-          <Link to="/view-cart">
+          <Link to="/viewCart">
             <FaShoppingCart className="cart-icon" />
             <span className="cart-count">{cartItemCount}</span>
           </Link>
