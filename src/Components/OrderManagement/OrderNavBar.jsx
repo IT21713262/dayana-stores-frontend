@@ -13,15 +13,23 @@ function OrderNavBar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const updateCartCount = () => {
-      const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
-      setCartItemCount(storedCart.length);
+    const fetchCartCount = async () => {
+      try {
+        const response = await fetch('http://localhost:8081/cart/items');
+        const cartItems = await response.json();
+        const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+        setCartItemCount(totalQuantity);
+      } catch (error) {
+        console.error('Failed to fetch cart items:', error);
+      }
     };
 
-    updateCartCount();
-    window.addEventListener('storage', updateCartCount);
+    fetchCartCount();
 
-    return () => window.removeEventListener('storage', updateCartCount);
+    // Optional: If you need live updates
+    const interval = setInterval(fetchCartCount, 5000); // update every 5 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   function logout() {
