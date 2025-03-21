@@ -4,12 +4,12 @@ import { FaShoppingCart } from "react-icons/fa";
 export const Sidebar = [
   {
     title: 'View Products',
-    path: '/supplierDashboard',
+    path: '/OrderManagementDashboard',
     icon: AiFillProduct,
   },
   {
     title: 'View Cart',
-    path: '/InventoryDashboard',
+    path: '/viewCart', 
     icon: FaShoppingCart,
   },
 ];

@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 import "./OrderManagement.css";
 
+// Add to Cart function to store items in localStorage
+const addToCart = (product, quantity) => {
+  const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const existingItemIndex = existingCart.findIndex((item) => item.id === product.id);
+
+  if (existingItemIndex !== -1) {
+    existingCart[existingItemIndex].quantity += quantity;
+  } else {
+    existingCart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+    });
+  }
+
+  localStorage.setItem('cartItems', JSON.stringify(existingCart));
+  window.dispatchEvent(new Event('storage'));
+};
 
 // Category Dropdown Component
 const CategoryDropdown = ({ onSelectCategory }) => {
@@ -19,6 +38,8 @@ const CategoryDropdown = ({ onSelectCategory }) => {
 
 // Product Card Component
 const ProductCard = ({ product }) => {
+  const [qty, setQty] = useState(1);
+
   return (
     <div className="product-card">
       <img src={product.image} alt={product.name} className="product-image" />
@@ -26,8 +47,18 @@ const ProductCard = ({ product }) => {
       <p>Rs. {product.price} / {product.unit}</p>
       <div className="product-actions">
         <label>Quantity</label>
-        <input type="number" min="1" defaultValue="1" />
-        <button className="add-to-cart-btn">Add to cart</button>
+        <input
+          type="number"
+          min="1"
+          value={qty}
+          onChange={(e) => setQty(parseInt(e.target.value) || 1)}
+        />
+        <button
+          className="add-to-cart-btn"
+          onClick={() => addToCart(product, qty)}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   );

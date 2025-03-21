@@ -1,26 +1,40 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdLogout } from 'react-icons/md';
-import { Sidebar} from './Sidebar';
+import { Sidebar } from './Sidebar';
 import './navbar.css';
-import logo from '../../Assets/Images/DayanaStoresLogo.png'
+import logo from '../../Assets/Images/DayanaStoresLogo.png';
 
 function OrderNavBar() {
   const [sidebar, setSidebar] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+      setCartItemCount(storedCart.length);
+    };
+
+    updateCartCount();
+    window.addEventListener('storage', updateCartCount);
+
+    return () => window.removeEventListener('storage', updateCartCount);
+  }, []);
 
   function logout() {
-    localStorage.removeItem("role");
-    localStorage.removeItem("itsp_provider_id");
-    alert("Logged out successfully!");
+    localStorage.removeItem('role');
+    localStorage.removeItem('itsp_provider_id');
+    alert('Logged out successfully!');
+    navigate('/login');
   }
 
   const toggleSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
-      {/* Top Navbar */}
       <div className="order-navbar">
         <button className="menu-bars" onClick={toggleSidebar} aria-label="Open Sidebar">
           <FaBars />
@@ -28,13 +42,14 @@ function OrderNavBar() {
         <img src={logo} alt="Logo" className="nav-logo" />
         <h2 className="nav-title">Shop all your grocery needs at Dayana Stores</h2>
         <div className="cart-container">
-          <FaShoppingCart className="cart-icon" />
-          <span className="cart-count">3</span> {/* Dynamic item count */}
+          <Link to="/view-cart">
+            <FaShoppingCart className="cart-icon" />
+            <span className="cart-count">{cartItemCount}</span>
+          </Link>
         </div>
       </div>
 
-      {/* Sidebar Menu */}
-      <div className={`sidebar-box ${sidebar ? "open" : ""}`}>
+      <div className={`sidebar-box ${sidebar ? 'open' : ''}`}>
         <button className="close-icon" onClick={toggleSidebar} aria-label="Close Sidebar">
           <AiOutlineClose />
         </button>
@@ -43,14 +58,13 @@ function OrderNavBar() {
             const IconComponent = item.icon;
             return (
               <li key={index} className="sidebar-item">
-                <Link to={item.path}>
+                <Link to={item.path} onClick={toggleSidebar}>
                   <IconComponent />
                   <span>{item.title}</span>
                 </Link>
               </li>
             );
           })}
-          {/* Logout */}
           <li className="sidebar-item">
             <Link to="/login" onClick={logout}>
               <MdLogout />

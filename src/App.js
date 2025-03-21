@@ -15,6 +15,10 @@ import EditEmployee from "./Components/Employee/EditEmployee";
 import ManageAttendance from "./Components/Employee/ManageAttendance";
 import AttendanceSummary from "./Components/Employee/AttendanceSummary";
 import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
+import ProductList from "./Components/OrderManagement/ProductList";
+import ViewCart from "./Components/OrderManagement/ViewCart";
+import PlaceOrder from "./Components/OrderManagement/PlaceOrder";
+
 
 import * as Inventory from "./Components/Inventory/InventoryRoutes";
 
@@ -43,6 +47,9 @@ function App() {
 
         {/*Orders*/}
         <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
+        <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/viewCart" element={<ViewCart />} />
+        <Route path="/place-order" element={<PlaceOrder />} />
         
         {/*Inventory*/}
         <Route path="/add-item" element={<Inventory.AddNewItem/>} />
