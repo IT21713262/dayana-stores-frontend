@@ -56,21 +56,21 @@ function App() {
                   <Route path="/low-stock-items" element={<Inventory.LowStockItemPage/>} />
                   <Route path="/stock-worth" element={<Inventory.StockWorth/>} />
 
-
-                </>
+                  {/*Employee routes */}
+                  <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
+                  <Route path="/AddEmployee" element={<AddEmployee />} />
+                  <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
+                  <Route path="/EditEmployee/:id" element={<EditEmployee />} />
+                  <Route path="/ManageAttendance" element={<ManageAttendance />} />
+                  <Route path="/AttendanceSummary" element={<AttendanceSummary />} />
+                          </>
               )}
               <Route path='*' element={<Navigate to="/login" />} />%
       
 
 
         
-         {/*Employee routes */}
-         <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
-         <Route path="/AddEmployee" element={<AddEmployee />} />
-         <Route path="/ViewEmployee/:id" element={<ViewEmployee />} />
-         <Route path="/EditEmployee/:id" element={<EditEmployee />} />
-         <Route path="/ManageAttendance" element={<ManageAttendance />} />
-         <Route path="/AttendanceSummary" element={<AttendanceSummary />} />
+        
 
 
       </Routes>
