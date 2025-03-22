@@ -6,11 +6,11 @@ const addToCart = async (product, quantity) => {
 
   try {
     await fetch(
-      `http://localhost:8081/cart/add?productId=${product.id}&quantity=${quantity}`,
+      `http://localhost:8081/admin/cart/add?productId=${product.id}&quantity=${quantity}`,
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       }
@@ -93,7 +93,7 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/inventory/all-items",
+          "http://localhost:8081/admin/inventory/all-items",
           {
             headers: {
               Authorization: `Bearer ${token}`,

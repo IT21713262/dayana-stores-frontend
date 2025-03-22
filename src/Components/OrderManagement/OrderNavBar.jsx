@@ -16,9 +16,9 @@ function OrderNavBar() {
   useEffect(() => {
     const fetchCartCount = async () => {
       try {
-        const response = await fetch('http://localhost:8081/cart/items', {
+        const response = await fetch('http://localhost:8081/admin/cart/items', {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         });

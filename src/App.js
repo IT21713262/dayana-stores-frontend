@@ -62,9 +62,7 @@ function App() {
 
                    {/*Orders*/}
                   <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
-                  <Route path="/ProductList" element={<ProductList />} />
-                  <Route path="/viewCart" element={<ViewCart />} />
-                  <Route path="/place-order" element={<PlaceOrder />} />
+                 
 
                   {/*Employee routes */}
                   <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
@@ -78,11 +76,10 @@ function App() {
               <Route path='*' element={<Navigate to="/login" />} />%
       
 
-
+                 <Route path="/ProductList" element={<ProductList />} />
+                  <Route path="/viewCart" element={<ViewCart />} />
+                  <Route path="/place-order" element={<PlaceOrder />} />
         
-        
-
-
       </Routes>
      
         </AuthProvider>
