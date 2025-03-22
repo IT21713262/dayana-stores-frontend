@@ -22,8 +22,8 @@ function LoginPage() {
             if (userData.token) {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role.toUpperCase()); // Normalize role
+                navigate('/EmployeeDashboard');               
                 refreshAuthState(); // Refresh state after login
-                navigate('/supplierDashboard');
             } else {
                 setError(userData.message);
             }

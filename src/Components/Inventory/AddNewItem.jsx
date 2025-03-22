@@ -12,6 +12,7 @@ import axios from 'axios'
 
 
 function AddNewItem() {
+  const token = localStorage.getItem("token"); // Make sure your token is stored
 
   const [formData, setFormData] = useState({
     item_name: "",
@@ -44,9 +45,11 @@ function AddNewItem() {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("http://localhost:8081/inventory/upload-image", formData, {
+      const response = await axios.post("http://localhost:8081/admin/inventory/upload-image", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${token}` 
+
         },
       });
 
@@ -78,10 +81,13 @@ function AddNewItem() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8081/inventory/add-item",
+        "http://localhost:8081/admin/inventory/add-item",
         itemData,  // Send data properly
         {
-          headers: { "Content-Type": "application/json" },
+          headers: {
+             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` 
+           },
         }
       );
 
@@ -148,9 +154,14 @@ function AddNewItem() {
 const removeImage= async () => {
   if (imagePath) {
     try {
-      await axios.delete(`http://localhost:8081/inventory/delete-image`, {
+      await axios.delete(`http://localhost:8081/admin/inventory/delete-image`, {
         data: { imagePath }, // Send imagePath in request body
-      });
+      },
+    {
+      headers: {
+       "Authorization": `Bearer ${token}` 
+      },
+    });
       if (fileInputRef.current) {
         fileInputRef.current.value = ""; // Reset file input
       }

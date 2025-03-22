@@ -9,10 +9,17 @@ function LowStockItemPage() {
   const [expiredItems, setExpiredItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem("token"); // Make sure your token is stored
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/inventory/expired")
+      .get("http://localhost:8081/admin/inventory/expired",
+        {
+          headers: {
+           "Authorization": `Bearer ${token}` 
+          },
+        }
+      )
       .then((response) => {
         setExpiredItems(response.data);
         setLoading(false); // Data fetched successfully

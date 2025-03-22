@@ -12,10 +12,17 @@ function LowStockItemPage() {
   const [lowStockItems, setLowStockItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem("token"); // Make sure your token is stored
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/inventory/low-stock")
+      .get("http://localhost:8081/admin/inventory/low-stock",
+        {
+          headers: {
+            "Authorization": `Bearer ${token}` 
+           },
+        }
+      )
       .then((response) => {
         setLowStockItems(response.data); 
         setLoading(false); // Data fetched successfully

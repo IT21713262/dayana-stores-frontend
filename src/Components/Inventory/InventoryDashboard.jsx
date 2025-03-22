@@ -63,11 +63,19 @@ function InventoryDashboard() {
       item.item_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
+    const token = localStorage.getItem("token"); // Make sure your token is stored
 
   useEffect(() => {
 
     // Fetch all items from the backend
-    axios.get("http://localhost:8081/inventory/all-items")
+    axios.get("http://localhost:8081/admin/inventory/all-items",
+      {
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}` 
+        },
+      }
+    )
         .then(response => {
           setItems(response.data); 
           console.log("eeee")// Set the client data
@@ -95,7 +103,14 @@ function InventoryDashboard() {
 
 useEffect(() => {
   axios
-    .get("http://localhost:8081/inventory/statistics")
+    .get("http://localhost:8081/admin/inventory/statistics",
+      {
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}` 
+        },
+      }
+    )
     .then((response) => {
       setStats(response.data); 
     })
@@ -157,9 +172,14 @@ useEffect(() => {
     if (savedImage) {
       try {
         let imagePath=savedImage;
-        await axios.delete(`http://localhost:8081/inventory/delete-image`, {
+        await axios.delete(`http://localhost:8081/admin/inventory/delete-image`, {
           data: { imagePath }, // Send imagePath in request body
-        });
+        },
+      {
+        headers: { 
+          "Authorization": `Bearer ${token}` 
+        },
+      });
         console.log("deleted image");
       } catch (error) {
         console.error("Error deleting image", error);
@@ -172,9 +192,10 @@ useEffect(() => {
     formData.append("file", imageFile);
 
     try {
-      const response = await axios.post("http://localhost:8081/inventory/upload-image", formData, {
+      const response = await axios.post("http://localhost:8081/admin/inventory/upload-image", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${token}` 
         },
       });
 
@@ -196,10 +217,14 @@ useEffect(() => {
     // third add all edited stuff 
     try {
       const response = await axios.put(
-        "http://localhost:8081/inventory/edit-item",
+        "http://localhost:8081/admin/inventory/edit-item",
         itemData,  // Send data properly
         {
-          headers: { "Content-Type": "application/json" },
+          headers: 
+          { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` 
+           },
         }
       );
 
@@ -237,9 +262,15 @@ useEffect(() => {
     setShowModal(false); // Close modal
     const toastId = toast.loading("Deleting Item...");
     try {
-      const response=await axios.delete(`http://localhost:8081/inventory/delete-item/${deleteItemId}`,{
+      const response=await axios.delete(`http://localhost:8081/admin/inventory/delete-item/${deleteItemId}`,{
         data:{imagePath}
-      });
+      },
+    {
+      headers: 
+      { 
+        "Authorization": `Bearer ${token}` 
+       },
+    });
       if(response.status===200)
       {
         toast.update(toastId, {
