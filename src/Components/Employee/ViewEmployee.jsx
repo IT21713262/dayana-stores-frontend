@@ -4,21 +4,37 @@ import NavBar from "../NavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import "./ViewEmployee.css";
 
-const BASE_URL = "http://localhost:8081/employee";
+const BASE_URL = "http://localhost:8081/admin/employee";
 
 const ViewEmployee = () => {
   const [employee, setEmployee] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getEmployeeById();
   }, [id]);
 
+  // const getEmployeeById = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/${id}`);
+  //     setEmployee(response.data);
+  //   } catch (err) {
+  //     console.error("Error fetching employee by ID:", err);
+  //     setError("Failed to fetch employee details.");
+  //   }
+  // };
+
   const getEmployeeById = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/${id}`);
+      const response = await axios.get(`${BASE_URL}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+          "Content-Type": "application/json",
+        },
+      });
       setEmployee(response.data);
     } catch (err) {
       console.error("Error fetching employee by ID:", err);

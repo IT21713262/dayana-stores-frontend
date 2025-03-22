@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify"; // Import Toastify
 import "react-toastify/dist/ReactToastify.css"; // Import CSS
 
 
-const BASE_URL = "http://localhost:8081/employee";
+const BASE_URL = "http://localhost:8081/admin/employee";
 
 const EditEmployee = () => {
   const [employee, setEmployee] = useState(null);
@@ -26,6 +26,7 @@ const EditEmployee = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getEmployeeById();
@@ -33,7 +34,13 @@ const EditEmployee = () => {
 
   const getEmployeeById = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/${id}`);
+      // const response = await axios.get(`${BASE_URL}/${id}`);
+      const response = await axios.get(`${BASE_URL}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Example: Add an auth token
+          "Content-Type": "application/json",
+        },
+      });      
       setEmployee(response.data);
       setFormData({
         firstName:response.data.firstName || "",
@@ -77,8 +84,22 @@ const EditEmployee = () => {
         category:formData.category
       };
   
-      await axios.post(`${BASE_URL}/add`, updatedData); // Use POST instead of PUT
-      toast.success("Employee details updated successfully!", { // Show success popup
+      // await axios.post(`${BASE_URL}/add`, updatedData); // Use POST instead of PUT
+      // toast.success("Employee details updated successfully!", { // Show success popup
+      //   position: "top-right",
+      //   autoClose: 3000, // Auto close after 3 seconds
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      // });
+      await axios.post(`${BASE_URL}/add`, updatedData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add auth token
+          "Content-Type": "application/json",
+        },
+      });
+      toast.success("Employee details updated successfully!", {
         position: "top-right",
         autoClose: 3000, // Auto close after 3 seconds
         hideProgressBar: false,
@@ -86,6 +107,7 @@ const EditEmployee = () => {
         pauseOnHover: true,
         draggable: true,
       });
+      
 
       getEmployeeById();
     } catch (err) {
