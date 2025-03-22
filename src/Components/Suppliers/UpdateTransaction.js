@@ -6,7 +6,7 @@ import "./UpdateTransaction.css"; // Import the CSS file
 export default function UpdateTransaction() {
   const { id } = useParams(); // Get the transaction ID from the URL
   const navigate = useNavigate(); // Hook for navigation
-
+  const token = localStorage.getItem("token");
   // State for form fields
   const [supplierName, setSupplierName] = useState("");
   const [product, setProduct] = useState("");

@@ -10,7 +10,7 @@ export default function AddSuppliers() {
   const [email, setEmail] = useState("");
   const [category, setCategory] = useState("");
   const [productsSupplied, setProductsSupplied] = useState("");
-
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   const sendData = async (e) => {
@@ -28,7 +28,12 @@ export default function AddSuppliers() {
     console.log("Sending data:", newSupplier);
 
     try {
-      await axios.post("/api/suppliers", newSupplier);
+      await axios.post("/admin/suppliers", newSupplier , 
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      );
       alert("Supplier details added successfully!");
       window.location.replace("http://localhost:3000/supplierDashboard");
     } catch (err) {

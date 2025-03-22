@@ -7,7 +7,7 @@ export default function ViewSupplier() {
   const [supplier, setSupplier] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     axios.get(`/api/suppliers/${id}`)
       .then((res) => {

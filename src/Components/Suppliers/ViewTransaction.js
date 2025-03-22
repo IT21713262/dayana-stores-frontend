@@ -9,7 +9,7 @@ export default function ViewTransaction() {
   const [error, setError] = useState(null); // State to handle errors
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     axios.get(`/api/transactions/${id}`)
       .then((res) => {

@@ -9,7 +9,7 @@ export default function AddTransaction() {
   const [quantity, setQuantity] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
   const [date, setDate] = useState("");
-
+  const token = localStorage.getItem("token");
   // Calculate total amount whenever price or quantity changes
   useEffect(() => {
     setTotalAmount(price * quantity);

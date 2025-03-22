@@ -8,7 +8,7 @@ export default function SupplierTransactions() {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     // Fetch transactions from your API endpoint
     axios.get("/api/transactions")

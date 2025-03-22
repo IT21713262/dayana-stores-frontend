@@ -10,6 +10,7 @@ export default function SupplierDashboard() {
   const [transactions, setTransactions] = useState([]); 
   const [transactionSearch, setTransactionSearch] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     fetchSuppliers();

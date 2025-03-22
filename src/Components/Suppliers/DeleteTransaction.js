@@ -8,7 +8,7 @@ export default function DeleteTransaction() {
   const { id } = useParams();
   const [transaction, setTransaction] = useState(null);
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     axios
       .get(`/api/transactions/${id}`)

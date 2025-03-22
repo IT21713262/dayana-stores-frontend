@@ -7,7 +7,7 @@ import "./SupplierReport.css";
 export default function SupplierReport() {
   const componentPDF = useRef();
   const [suppliers, setSuppliers] = useState([]);
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     axios
       .get("/api/suppliers")

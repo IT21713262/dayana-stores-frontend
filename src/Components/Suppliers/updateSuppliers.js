@@ -10,7 +10,7 @@ export default function UpdateSupplier() {
   const [email, setEmail] = useState("");
   const [category, setCategory] = useState("");
   const [productsSupplied, setProductsSupplied] = useState("");
-
+  const token = localStorage.getItem("token");
   const { id } = useParams();
   const navigate = useNavigate();
 

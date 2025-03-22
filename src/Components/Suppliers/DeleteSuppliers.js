@@ -7,7 +7,7 @@ export default function DeleteSuppliers() {
   const { id } = useParams();
   const [supplier, setSupplier] = useState(null);
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     fetchSupplierDetails();
   }, []);

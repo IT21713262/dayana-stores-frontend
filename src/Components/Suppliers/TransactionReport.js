@@ -7,7 +7,7 @@ import "./TransactionReport.css";
 export default function TransactionReport() {
   const componentRef = useRef();
   const [transactions, setTransactions] = useState([]);
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     axios
       .get("/api/transactions/all")
