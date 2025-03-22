@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./OrderManagement.css";
 
-// Add to Cart function (store in localStorage + call backend)
 const addToCart = async (product, quantity) => {
+  const token = localStorage.getItem("token");
+
   try {
-    // Call backend to add to cart
     await fetch(
       `http://localhost:8081/cart/add?productId=${product.id}&quantity=${quantity}`,
-      { method: "POST" }
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
 
-    // Update localStorage for UI sync
     const existingCart = JSON.parse(localStorage.getItem("cartItems")) || [];
     const existingItemIndex = existingCart.findIndex(
       (item) => item.id === product.id
@@ -82,13 +87,23 @@ const ProductCard = ({ product }) => {
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/inventory/all-items"
+          "http://localhost:8081/inventory/all-items",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
         );
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
         const data = await response.json();
         const mappedProducts = data.map((item) => ({
           id: item.item_id,
@@ -104,7 +119,7 @@ const ProductList = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [token]);
 
   const filteredProducts = category
     ? products.filter((product) => product.category === category)

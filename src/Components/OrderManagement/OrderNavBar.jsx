@@ -11,11 +11,20 @@ function OrderNavBar() {
   const [sidebar, setSidebar] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const fetchCartCount = async () => {
       try {
-        const response = await fetch('http://localhost:8081/cart/items');
+        const response = await fetch('http://localhost:8081/cart/items', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const cartItems = await response.json();
         const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
         setCartItemCount(totalQuantity);
@@ -26,15 +35,15 @@ function OrderNavBar() {
 
     fetchCartCount();
 
-    // Optional: If you need live updates
     const interval = setInterval(fetchCartCount, 5000); // update every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [token]);
 
   function logout() {
     localStorage.removeItem('role');
     localStorage.removeItem('itsp_provider_id');
+    localStorage.removeItem('token');
     alert('Logged out successfully!');
     navigate('/login');
   }

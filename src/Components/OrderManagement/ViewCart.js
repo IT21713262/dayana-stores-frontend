@@ -7,10 +7,16 @@ import './OrderManagement.css';
 const ViewCart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
+  const token = localStorage.getItem('token');
 
   const loadCartFromAPI = async () => {
     try {
-      const response = await fetch('http://localhost:8081/cart/items');
+      const response = await fetch('http://localhost:8081/cart/items', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
       const data = await response.json();
       setCartItems(data);
     } catch (error) {
@@ -20,13 +26,20 @@ const ViewCart = () => {
 
   useEffect(() => {
     loadCartFromAPI();
-  }, []);
+  }, [token]);
 
   const handleUpdateQuantity = async (itemId, newQuantity) => {
     try {
-      await fetch(`http://localhost:8081/cart/update/${itemId}?quantity=${newQuantity}`, {
-        method: 'PATCH',
-      });
+      await fetch(
+        `http://localhost:8081/cart/update/${itemId}?quantity=${newQuantity}`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       loadCartFromAPI();
     } catch (error) {
       console.error('Error updating cart item quantity:', error);
@@ -51,6 +64,10 @@ const ViewCart = () => {
     try {
       await fetch(`http://localhost:8081/cart/remove/${cartId}`, {
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       });
       loadCartFromAPI();
     } catch (error) {

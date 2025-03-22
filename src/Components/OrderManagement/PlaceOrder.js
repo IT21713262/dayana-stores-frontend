@@ -7,11 +7,20 @@ const PlaceOrder = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const loadCartFromAPI = async () => {
       try {
-        const response = await fetch('http://localhost:8081/cart/items');
+        const response = await fetch('http://localhost:8081/cart/items', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch cart items');
+        }
         const data = await response.json();
         setCartItems(data);
       } catch (error) {
@@ -20,7 +29,7 @@ const PlaceOrder = () => {
     };
 
     loadCartFromAPI();
-  }, []);
+  }, [token]);
 
   const subTotal = cartItems.reduce(
     (total, item) => total + item.item.unit_price * item.quantity,
@@ -33,14 +42,14 @@ const PlaceOrder = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        // No body needed as your backend takes cart directly
       });
-  
+
       if (!response.ok) {
         throw new Error('Order placement failed');
       }
-  
+
       const data = await response.json();
       console.log('Order placed successfully:', data);
       setShowPopup(true);
@@ -49,7 +58,6 @@ const PlaceOrder = () => {
       alert('Failed to place order. Please try again.');
     }
   };
-  
 
   const handleContinueShopping = () => {
     setShowPopup(false);
