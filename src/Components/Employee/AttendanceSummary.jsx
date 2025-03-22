@@ -6,8 +6,9 @@ import "./AttendanceSummary.css"; // Ensure this file exists
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 
-const BASE_URL = "http://localhost:8081/employee";
-const BASE_URL1 = "http://localhost:8081/attendance";
+const BASE_URL = "http://localhost:8081/admin/employee";
+const BASE_URL1 = "http://localhost:8081/admin/attendance";
+const token = localStorage.getItem("token");
 
 const AttendanceSummary = () => {
   const [employees, setEmployees] = useState([]);
@@ -20,11 +21,32 @@ const AttendanceSummary = () => {
     fetchEmployees();
   }, []);
 
+  // const fetchEmployees = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/list`);
+  //     setEmployees(response.data);
+
+  //     // Initialize attendance state with default values (null = not marked)
+  //     const initialAttendance = {};
+  //     response.data.forEach((emp) => {
+  //       initialAttendance[emp.id] = { status: null, leaveStatus: null };
+  //     });
+  //     setAttendance(initialAttendance);
+  //   } catch (error) {
+  //     console.error("Error fetching employees:", error);
+  //   }
+  // };
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/list`);
+      const response = await axios.get(`${BASE_URL}/list`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Example: Add an auth token
+          "Content-Type": "application/json",
+        },
+      });
+  
       setEmployees(response.data);
-
+  
       // Initialize attendance state with default values (null = not marked)
       const initialAttendance = {};
       response.data.forEach((emp) => {
@@ -35,6 +57,7 @@ const AttendanceSummary = () => {
       console.error("Error fetching employees:", error);
     }
   };
+  
 
 
   // Filtering employees based on search query

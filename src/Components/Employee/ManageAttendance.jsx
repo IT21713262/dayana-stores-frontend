@@ -5,9 +5,9 @@ import NavBar from "../NavBar";
 import "./ManageAttendance.css"; // Ensure this file exists
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-  const BASE_URL = "http://localhost:8081/employee";
-  const BASE_URL1 = "http://localhost:8081/attendance";
-  
+  const BASE_URL = "http://localhost:8081/admin/employee";
+  const BASE_URL1 = "http://localhost:8081/admin/attendance";
+  const token = localStorage.getItem("token");
   
   const ManageAttendance = () => {
     const [employees, setEmployees] = useState([]);
@@ -20,7 +20,13 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
   
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/list`);
+        const response = await axios.get(`${BASE_URL}/list`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add auth token
+            "Content-Type": "application/json",
+          },
+        });
+        
         setEmployees(response.data);
   
         // Initialize attendance state with default values (null = not marked)
@@ -44,9 +50,15 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
     
         const response = await axios.post(`${BASE_URL1}/mark`, {
           employeeId: { id },  // Passing employeeId inside employee object
-          date,              // Current date
-          status,            // Present or Absent
+          date,                // Current date
+          status,              // Present or Absent
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add auth token
+            "Content-Type": "application/json",
+          },
         });
+        
     
         if (response.status === 200) {
           setAttendance((prev) => ({

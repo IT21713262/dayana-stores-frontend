@@ -7,7 +7,8 @@ import { FaExclamationCircle } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const BASE_URL = "http://localhost:8081/employee";
+const BASE_URL = "http://localhost:8081/admin/employee";
+const token = localStorage.getItem("token");
 
 const AddEmployee = () => {
   const [formData, setFormData] = useState({
@@ -59,21 +60,43 @@ const AddEmployee = () => {
       return;
     }
 
-    axios
-      .post(`${BASE_URL}/add`, formData)
-      .then((response) => {
-        toast.success("Employee added successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-        });
+    // axios
+    //   .post(`${BASE_URL}/add`, formData)
+    //   .then((response) => {
+    //     toast.success("Employee added successfully!", {
+    //       position: "top-right",
+    //       autoClose: 3000,
+    //     });
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      })
-      .catch((error) => {
-        toast.error("An error occurred while adding the employee.");
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 1000);
+    //   })
+    //   .catch((error) => {
+    //     toast.error("An error occurred while adding the employee.");
+    //   });
+
+    axios
+    .post(`${BASE_URL}/add`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Example: Add an auth token
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      toast.success("Employee added successfully!", {
+        position: "top-right",
+        autoClose: 3000,
       });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    })
+    .catch((error) => {
+      toast.error("An error occurred while adding the employee.");
+    });
+
   };
 
 

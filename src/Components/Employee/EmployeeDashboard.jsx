@@ -7,27 +7,44 @@ import "react-toastify/dist/ReactToastify.css"; // Import CSS
 import "./EmployeeDashboard.css";
 import NavBar from '../NavBar';
 
-const BASE_URL = "http://localhost:8081/employee";
+const BASE_URL = "http://localhost:8081/admin/employee";
 
 const EmployeeDashboard = () => {
   const [employees, setEmployees] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     fetchEmployees();
   }, []);
 
+  // const fetchEmployees = async () => {
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/list`);
+  //     setEmployees(response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching employees:", error);
+  //     toast.error("Failed to fetch employees.");
+  //   }
+  // };
+
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/list`);
+      const response = await axios.get(`${BASE_URL}/list`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add auth token
+          "Content-Type": "application/json",
+        },
+      });
       setEmployees(response.data);
     } catch (error) {
       console.error("Error fetching employees:", error);
       toast.error("Failed to fetch employees.");
     }
   };
+  
 
   const handleDelete = (id) => {
     // Show a confirmation toast with buttons
@@ -53,7 +70,13 @@ const EmployeeDashboard = () => {
   
   const confirmDeletion = async (id, confirmToast) => {
     try {
-      await axios.delete(`${BASE_URL}?id=${id}`);
+      // await axios.delete(`${BASE_URL}?id=${id}`);
+      await axios.delete(`${BASE_URL}?id=${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add auth token
+          "Content-Type": "application/json",
+        },
+      });
       setEmployees((prevEmployees) => prevEmployees.filter((emp) => emp.id !== id));
       toast.dismiss(confirmToast); // Close the confirmation toast
       toast.success("Employee deleted successfully!", {
