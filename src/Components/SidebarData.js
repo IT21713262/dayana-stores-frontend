@@ -1,6 +1,7 @@
 import { MdInventory } from "react-icons/md"
 import { MdLogout } from "react-icons/md";
 import { BsBoxes } from "react-icons/bs";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 
 
@@ -21,7 +22,7 @@ export const SidebarData=[
     {
         title:'Employee',
         path:'/EmployeeDashboard',
-        icon:MdInventory,
+        icon:BsFillPeopleFill,        
         className:'nav-text'
     },
     {
