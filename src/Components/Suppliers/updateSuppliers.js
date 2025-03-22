@@ -18,7 +18,12 @@ export default function UpdateSupplier() {
     if (!id) return;
 
     axios
-      .get(`/api/suppliers/${id}`)
+      .get(`/admin/suppliers/${id}`,
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
       .then((res) => {
         setName(res.data.supplierName || "");
         setAddress(res.data.supplierAddress || "");
@@ -45,7 +50,12 @@ export default function UpdateSupplier() {
     };
 
     axios
-      .put(`/api/suppliers/${id}`, updatedSupplier)
+      .put(`/admin/suppliers/${id}`, updatedSupplier,
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
       .then(() => {
         alert("Supplier details updated successfully!");
         navigate("/supplierDashboard");

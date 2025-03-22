@@ -7,19 +7,29 @@ export default function DeleteSuppliers() {
   const { id } = useParams();
   const [supplier, setSupplier] = useState(null);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+ const token = localStorage.getItem("token");
   useEffect(() => {
     fetchSupplierDetails();
   }, []);
 
   const fetchSupplierDetails = () => {
-    axios.get(`/api/suppliers/${id}`)
+    axios.get(`/admin/suppliers/${id}`,
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    )
       .then(res => setSupplier(res.data))
       .catch(err => console.error("Error fetching supplier:", err));
   };
 
   const handleDelete = () => {
-    axios.delete(`/api/suppliers/${id}`)
+    axios.delete(`/admin/suppliers/${id}`,
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    )
       .then(() => {
         alert("Supplier deleted successfully.");
         navigate("/supplierDashboard");

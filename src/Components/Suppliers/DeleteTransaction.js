@@ -11,14 +11,24 @@ export default function DeleteTransaction() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get(`/api/transactions/${id}`)
+      .get(`/admin/transactions/${id}`,
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
       .then((res) => setTransaction(res.data))
       .catch((err) => console.error("Error fetching transaction:", err));
   }, [id]);
 
   const handleDelete = () => {
     axios
-      .delete(`/api/transactions/${id}`)
+      .delete(`/admin/transactions/${id}`,
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
       .then(() => {
         alert("Transaction deleted successfully.");
         navigate("/supplierDashboard");

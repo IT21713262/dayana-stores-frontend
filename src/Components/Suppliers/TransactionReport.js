@@ -10,7 +10,12 @@ export default function TransactionReport() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("/api/transactions/all")
+      .get("/admin/transactions/all",
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
       .then((res) => setTransactions(res.data))
       .catch((err) => alert(err.message));
   }, []);

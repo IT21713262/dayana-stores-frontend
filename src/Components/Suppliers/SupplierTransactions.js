@@ -11,7 +11,12 @@ export default function SupplierTransactions() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     // Fetch transactions from your API endpoint
-    axios.get("/api/transactions")
+    axios.get("/admin/transactions", 
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    )
       .then((res) => {
         setTransactions(res.data);
         setFilteredTransactions(res.data);
@@ -34,7 +39,12 @@ export default function SupplierTransactions() {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
-      axios.delete(`/api/transactions/${id}`)
+      axios.delete(`/admin/transactions/${id}`, 
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
         .then(() => {
           const updated = transactions.filter(tx => tx.id !== id);
           setTransactions(updated);

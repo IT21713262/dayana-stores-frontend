@@ -9,7 +9,12 @@ export default function ViewSupplier() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   useEffect(() => {
-    axios.get(`/api/suppliers/${id}`)
+    axios.get(`/admin/suppliers/${id}`,
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    )
       .then((res) => {
         setSupplier(res.data);
       })

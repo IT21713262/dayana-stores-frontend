@@ -10,7 +10,12 @@ export default function SupplierReport() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("/api/suppliers")
+      .get("/admin/suppliers",
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
       .then((res) => setSuppliers(res.data))
       .catch((err) => alert(err.message));
   }, []);

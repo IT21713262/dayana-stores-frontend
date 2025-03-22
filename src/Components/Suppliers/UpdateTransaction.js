@@ -18,7 +18,12 @@ export default function UpdateTransaction() {
 
   useEffect(() => {
     // Fetch the transaction details from the backend
-    axios.get(`/api/transactions/${id}`)
+    axios.get(`/admin/transactions/${id}`,
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    )
       .then((response) => {
         const transaction = response.data;
         setSupplierName(transaction.supplierName);
@@ -43,7 +48,12 @@ export default function UpdateTransaction() {
     e.preventDefault();
     const updatedTransaction = { supplierName, product, productCategory, price, quantity, totalAmount, date };
 
-    axios.put(`/api/transactions/${id}`, updatedTransaction)
+    axios.put(`/admin/transactions/${id}`, updatedTransaction,
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    )
       .then(() => {
         alert("Transaction updated successfully");
         navigate("/supplierDashboard"); // Redirect back to dashboard

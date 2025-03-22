@@ -18,13 +18,23 @@ export default function SupplierDashboard() {
   }, []);
 
   const fetchSuppliers = () => {
-    axios.get("/api/suppliers")
+    axios.get("/admin/suppliers",
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    )
       .then((res) => setSuppliers(res.data))
       .catch(err => console.error("Error fetching suppliers:", err));
   };
 
   const fetchTransactions = () => {
-    axios.get("/api/transactions/all") 
+    axios.get("/admin/transactions/all",
+      {headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token} `
+      },}
+    ) 
       .then((res) => setTransactions(res.data))
       .catch(err => console.error("Error fetching transactions:", err));
   };
@@ -44,7 +54,12 @@ export default function SupplierDashboard() {
   
   const handleDeleteSupplier = id => {
     if (window.confirm("Are you sure you want to delete this supplier?")) {
-      axios.delete(`/api/suppliers/${id}`)
+      axios.delete(`/admin/suppliers/${id}`,
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
         .then(() => setSuppliers(suppliers.filter(s => s.supplierId !== id)))
         .catch(err => console.error(err));
     }
@@ -54,7 +69,12 @@ export default function SupplierDashboard() {
   const handleViewTransaction = id => navigate(`/viewTransaction/${id}`);
   const handleDeleteTransaction = id => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
-      axios.delete(`/api/transactions/${id}`)
+      axios.delete(`/admin/transactions/${id}`,
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      )
         .then(() => setTransactions(transactions.filter(t => t.id !== id)))
         .catch(err => console.error(err));
     }

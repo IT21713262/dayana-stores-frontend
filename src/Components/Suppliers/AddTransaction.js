@@ -9,7 +9,7 @@ export default function AddTransaction() {
   const [quantity, setQuantity] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
   const [date, setDate] = useState("");
-  const token = localStorage.getItem("token");
+ const token = localStorage.getItem("token");
   // Calculate total amount whenever price or quantity changes
   useEffect(() => {
     setTotalAmount(price * quantity);
@@ -19,7 +19,12 @@ export default function AddTransaction() {
     e.preventDefault();
     const newTransaction = { supplierName, product, productCategory, price, quantity, totalAmount, date };
     axios
-      .post("/api/transactions", newTransaction) // Adjusted URL
+      .post("/admin/transactions", newTransaction,
+        {headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token} `
+        },}
+      ) // Adjusted URL
       .then(() => {
         alert("Transaction added successfully");
         window.location.href = "/supplierDashboard"; // Redirect to transactions page
