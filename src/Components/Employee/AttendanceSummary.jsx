@@ -40,7 +40,7 @@ const AttendanceSummary = () => {
     try {
       const response = await axios.get(`${BASE_URL}/list`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Example: Add an auth token
+          "Authorization": `Bearer ${token}`, // Example: Add an auth token
           "Content-Type": "application/json",
         },
       });

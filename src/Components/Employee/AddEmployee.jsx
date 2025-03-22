@@ -79,7 +79,7 @@ const AddEmployee = () => {
     axios
     .post(`${BASE_URL}/add`, formData, {
       headers: {
-        Authorization: `Bearer ${token}`, // Example: Add an auth token
+        "Authorization": `Bearer ${token}`, // Example: Add an auth token
         "Content-Type": "application/json",
       },
     })

@@ -31,7 +31,7 @@ const ViewEmployee = () => {
     try {
       const response = await axios.get(`${BASE_URL}/${id}`, {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          "Authorization": `Bearer ${token}`, 
           "Content-Type": "application/json",
         },
       });

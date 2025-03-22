@@ -37,7 +37,7 @@ const EditEmployee = () => {
       // const response = await axios.get(`${BASE_URL}/${id}`);
       const response = await axios.get(`${BASE_URL}/${id}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Example: Add an auth token
+          "Authorization": `Bearer ${token}`, // Example: Add an auth token
           "Content-Type": "application/json",
         },
       });      
@@ -95,7 +95,7 @@ const EditEmployee = () => {
       // });
       await axios.post(`${BASE_URL}/add`, updatedData, {
         headers: {
-          Authorization: `Bearer ${token}`, // Add auth token
+          "Authorization": `Bearer ${token}`, // Add auth token
           "Content-Type": "application/json",
         },
       });

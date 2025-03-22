@@ -34,7 +34,7 @@ const EmployeeDashboard = () => {
     try {
       const response = await axios.get(`${BASE_URL}/list`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Add auth token
+          "Authorization": `Bearer ${token}`, // Add auth token
           "Content-Type": "application/json",
         },
       });
@@ -73,7 +73,7 @@ const EmployeeDashboard = () => {
       // await axios.delete(`${BASE_URL}?id=${id}`);
       await axios.delete(`${BASE_URL}?id=${id}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Add auth token
+          "Authorization": `Bearer ${token}`, // Add auth token
           "Content-Type": "application/json",
         },
       });

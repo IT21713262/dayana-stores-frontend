@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
       try {
         const response = await axios.get(`${BASE_URL}/list`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Add auth token
+            "Authorization": `Bearer ${token}`, // Add auth token
             "Content-Type": "application/json",
           },
         });
@@ -54,7 +54,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
           status,              // Present or Absent
         }, {
           headers: {
-            Authorization: `Bearer ${token}`, // Add auth token
+            "Authorization": `Bearer ${token}`, // Add auth token
             "Content-Type": "application/json",
           },
         });
