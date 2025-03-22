@@ -1,9 +1,9 @@
 /* EmployeeDashboard.css */
 
 /* Container */
-.emp-dashboard-container {
+/* .emp-dashboard-container {
     padding: 24px;
-  }
+  } */
   /* Header Bar Styles */
 .emp-header-bar {
   display: flex;
@@ -157,6 +157,7 @@
   align-items: center;
   gap: 15px; /* Adjust the spacing as needed */
   margin-bottom: 20px;
+  padding-left: 12px;
 }
 
 .emp-category-filter {
