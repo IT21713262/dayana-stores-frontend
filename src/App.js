@@ -22,6 +22,10 @@ import ViewEmployee from "./Components/Employee/ViewEmployee";
 import EditEmployee from "./Components/Employee/EditEmployee";
 import ManageAttendance from "./Components/Employee/ManageAttendance";
 import AttendanceSummary from "./Components/Employee/AttendanceSummary";
+import OrderManagementDashboard from "./Components/OrderManagement/OrderManagementDashboard";
+import ProductList from "./Components/OrderManagement/ProductList";
+import ViewCart from "./Components/OrderManagement/ViewCart";
+import PlaceOrder from "./Components/OrderManagement/PlaceOrder";
 
 function App() {
   return (
@@ -55,6 +59,12 @@ function App() {
                   <Route path="/expired-items" element={<Inventory.ExpiredItemPage/>} />
                   <Route path="/low-stock-items" element={<Inventory.LowStockItemPage/>} />
                   <Route path="/stock-worth" element={<Inventory.StockWorth/>} />
+
+                   {/*Orders*/}
+                  <Route path="/OrderManagementDashboard" element={<OrderManagementDashboard />} />
+                  <Route path="/ProductList" element={<ProductList />} />
+                  <Route path="/viewCart" element={<ViewCart />} />
+                  <Route path="/place-order" element={<PlaceOrder />} />
 
                   {/*Employee routes */}
                   <Route path="/EmployeeDashboard" element={< EmployeeDashboard />} />
