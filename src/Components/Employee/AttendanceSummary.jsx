@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa"; // Importing the search icon
 import NavBar from "../NavBar";
 import "./AttendanceSummary.css"; // Ensure this file exists
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import Footer from "../Users/common/Footer";
 
 
 const BASE_URL = "http://localhost:8081/admin/employee";
@@ -125,6 +126,7 @@ const AttendanceSummary = () => {
           ))}
         </tbody>
       </table>
+      <Footer/>
     </div>
   );
 };

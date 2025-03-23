@@ -46,8 +46,7 @@ const showSidebar=()=> setSidebar(!sidebar);
                     </li> 
                 )
             })}
-            <li className='nav-text'><Link to='/login'onClick={logout}><MdLogout /><span>Logout</span>
-            </Link></li>
+           
         </ul>
     </nav>  
    

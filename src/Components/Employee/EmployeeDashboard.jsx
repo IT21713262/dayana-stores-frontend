@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify"; // Import Toastify
 import "react-toastify/dist/ReactToastify.css"; // Import CSS
 import "./EmployeeDashboard.css";
 import NavBar from '../NavBar';
+import Footer from "../Users/common/Footer";
 
 const BASE_URL = "http://localhost:8081/admin/employee";
 
@@ -161,6 +162,7 @@ const EmployeeDashboard = () => {
           )}
         </tbody>
       </table>
+      <Footer/>
     </div>
   );
 };

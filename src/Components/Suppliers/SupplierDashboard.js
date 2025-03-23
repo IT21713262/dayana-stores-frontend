@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import NavBar from '../NavBar'
 
 import "./SupplierDashboard.css";
+import Footer from "../Users/common/Footer";
 
 export default function SupplierDashboard() {
   const [suppliers, setSuppliers] = useState([]);
@@ -81,6 +83,8 @@ export default function SupplierDashboard() {
   };
 
   return (
+    <>
+    <NavBar/>
     <div className="dashboard-container">
       {/* Suppliers Section */}
       <div className="section-container">
@@ -191,5 +195,7 @@ export default function SupplierDashboard() {
 
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

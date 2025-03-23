@@ -18,7 +18,6 @@ import ViewSupplier from './Components/Suppliers/viewSupplier';
 import ViewTransaction from './Components/Suppliers/ViewTransaction';
 import UpdateTransaction from './Components/Suppliers/UpdateTransaction';
 import TransactionReport from './Components/Suppliers/TransactionReport';
-import GenerateReport from './Components/Suppliers/GenerateReport';
 
 // Inventory
 import * as Inventory from "./Components/Inventory/InventoryRoutes";
@@ -64,7 +63,6 @@ function AppRoutes() {
           <Route path="/viewSupplier/:id" element={<ViewSupplier />} />
           <Route path="/viewTransaction/:id" element={<ViewTransaction />} />
           <Route path="/transactionReport" element={<TransactionReport />} />
-          <Route path="/generateReport" element={<GenerateReport />} />
 
           {/* Inventory Routes */}
           <Route path="/InventoryDashboard" element={<Inventory.InventoryDashboard />} />

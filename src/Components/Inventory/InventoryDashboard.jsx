@@ -24,6 +24,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { IoMdAdd } from "react-icons/io";
 import axios from 'axios'
+import Footer from '../Users/common/Footer'
 
 function InventoryDashboard() {
 
@@ -611,8 +612,9 @@ useEffect(() => {
     </div>
   </div>
 )}
-
-
+<div style={{marginTop:"600px"}}>
+<Footer/>
+</div>
     </>
   )
 }

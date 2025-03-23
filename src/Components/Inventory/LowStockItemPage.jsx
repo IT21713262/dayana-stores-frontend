@@ -5,6 +5,7 @@ import { FaBoxOpen } from "react-icons/fa";
 import axios from 'axios'
 import { useState,useEffect} from 'react'
 import { IoMdAdd } from "react-icons/io";
+import Footer from '../Users/common/Footer';
 
 
 function LowStockItemPage() {
@@ -90,6 +91,7 @@ function LowStockItemPage() {
       </table>
     </div>
     )}
+    <Footer/>
     </>
   )
 }

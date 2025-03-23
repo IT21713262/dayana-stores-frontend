@@ -7,6 +7,7 @@ import { useState,useEffect} from 'react'
 import { AiOutlineStock } from "react-icons/ai";
 import { FaMinus } from "react-icons/fa6";
 import { FaBoxesPacking } from "react-icons/fa6";
+import Footer from '../Users/common/Footer';
 
 
 function LowStockItemPage() {
@@ -91,6 +92,7 @@ function LowStockItemPage() {
       </table>
     </div>
     )}
+    <Footer/>
     </>
   )
 }

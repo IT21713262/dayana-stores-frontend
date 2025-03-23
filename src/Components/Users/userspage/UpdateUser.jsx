@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserService from '../service/UserService';
 import '../UserManagement.css';
+import NavBar from '../../NavBar'
+
 function UpdateUser() {
   const navigate = useNavigate();
   const { userId } = useParams();
@@ -53,6 +55,8 @@ function UpdateUser() {
   };
 
   return (
+    <>
+    <NavBar/>
     <div className="auth-container">
       <h2>Update User</h2>
       <form onSubmit={handleSubmit}>
@@ -95,6 +99,7 @@ function UpdateUser() {
         <button type="submit">Update</button>
       </form>
     </div>
+    </>
   );
 }
 

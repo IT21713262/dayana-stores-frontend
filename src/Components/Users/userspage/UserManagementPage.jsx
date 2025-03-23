@@ -4,6 +4,7 @@ import UserService from "../service/UserService";
 import '../UserManagement.css';
 import Footer from "../common/Footer";
 import UserNavbar from "../common/UserNavbar";
+import NavBar from "../../NavBar";
 function UserManagementPage() {
     const [users, setUsers] = useState([]);
 
@@ -39,6 +40,7 @@ function UserManagementPage() {
     }
     return(
         <>
+        <NavBar/>
         <UserNavbar/>    
         <div className="user-management-container">
             <h2 className="user-management-title">Users Management Page</h2>

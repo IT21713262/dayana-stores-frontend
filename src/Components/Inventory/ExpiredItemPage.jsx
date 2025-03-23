@@ -4,6 +4,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import axios from 'axios';
 import {FaMinus } from "react-icons/fa6";
 import { FaCalendarTimes } from "react-icons/fa";
+import Footer from '../Users/common/Footer';
 
 function LowStockItemPage() {
   const [expiredItems, setExpiredItems] = useState([]);
@@ -100,6 +101,7 @@ function LowStockItemPage() {
           </table>
         </div>
       )}
+      <Footer/>
     </>
   );
 }

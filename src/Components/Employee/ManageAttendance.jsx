@@ -4,6 +4,7 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import NavBar from "../NavBar";
 import "./ManageAttendance.css"; // Ensure this file exists
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import Footer from "../Users/common/Footer";
 
   const BASE_URL = "http://localhost:8081/admin/employee";
   const BASE_URL1 = "http://localhost:8081/admin/attendance";
@@ -140,6 +141,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
             ))}
           </tbody>
         </table>
+        <Footer/>
       </div>
     );
   };

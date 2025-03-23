@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import '../UserManagement.css';
 import Footer from "../common/Footer";
 import UserNavbar from "../common/UserNavbar";
+import NavBar from "../../NavBar";
 
 function RegistrationPage(){
 
@@ -59,6 +60,7 @@ function RegistrationPage(){
 
     return(
         <>
+        <NavBar/>
         <UserNavbar/>
         <div className="register-form auth-container">
             <h2>Registration</h2>

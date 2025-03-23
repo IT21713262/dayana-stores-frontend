@@ -50,7 +50,7 @@ const CategoryDropdown = ({ onSelectCategory }) => {
         <option value="">--Select Category--</option>
         <option value="grains">Grains</option>
         <option value="snacks">Snacks</option>
-        <option value="beverages">Beverages</option>
+        <option value="Beverages">Beverages</option>
       </select>
     </div>
   );

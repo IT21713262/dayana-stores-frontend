@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import { useState,useEffect,useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Footer from '../Users/common/Footer';
 
 
 function AddNewItem() {
@@ -185,7 +186,7 @@ const removeImage= async () => {
     
         <h2 className='other-page-title'>Add New Item <SiGoogleforms /></h2>
         <hr className='green-line'></hr>
-      <div className='form-container'>
+      <div className='inventory-form-container'>
         <form className='add-form'>
             <div className='right-side'>
 
@@ -269,9 +270,9 @@ const removeImage= async () => {
         </form>
 
         {/* Buttons */}
-        <div className="button-group">
-             <button type="button" onClick={handleSubmit} className='add-item-btn'>Add Item</button>
-             <button type="button" onClick={resetForm} className="cancel-btn">Cancel</button>
+        <div className="item-button-group">
+             <button type="button" onClick={handleSubmit} className='item-add-btn'>Add Item</button>
+             <button type="button" onClick={resetForm} className="item-cancel-btn">Cancel</button>
         </div>
         
       </div>

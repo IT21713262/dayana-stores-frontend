@@ -2,6 +2,7 @@ import { MdInventory } from "react-icons/md"
 import { MdLogout } from "react-icons/md";
 import { BsBoxes } from "react-icons/bs";
 import { BsFillPeopleFill } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 
 
 
@@ -28,7 +29,7 @@ export const SidebarData=[
     {
         title:'Profile',
         path:'/profile',
-        icon:MdInventory,
+        icon:CgProfile ,
         className:'nav-text'
     },
    
