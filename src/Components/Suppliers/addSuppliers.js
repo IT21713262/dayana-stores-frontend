@@ -35,7 +35,7 @@ export default function AddSuppliers() {
         },}
       );
       alert("Supplier details added successfully!");
-      window.location.replace("http://localhost:3000/supplierDashboard");
+      window.location.href = "/supplierDashboard";
     } catch (err) {
       if (err.response) {
         console.error("Error response:", err.response.data);
