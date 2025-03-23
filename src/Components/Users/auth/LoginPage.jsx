@@ -22,8 +22,17 @@ function LoginPage() {
             if (userData.token) {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role.toUpperCase()); // Normalize role
-                navigate('/EmployeeDashboard');               
                 refreshAuthState(); // Refresh state after login
+
+                // Redirect based on role
+                if (userData.role.toUpperCase() === 'ADMIN') {
+                    navigate('/EmployeeDashboard');
+                } else if (userData.role.toUpperCase() === 'USER') {
+                    navigate('/OrderManagementDashboard');
+                } else {
+                    // Fallback in case role is something unexpected
+                    navigate('/login');
+                }
             } else {
                 setError(userData.message);
             }
@@ -38,23 +47,23 @@ function LoginPage() {
 
     return (
         <>
-        <UserNavbar/>
-        <div className="login-form auth-container">
-            <h2>Login</h2>
-            {error && <p className="error-message">{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email"/>
-                </div>
-                <div className="form-group">
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password"/>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-        <Footer/>
+            <UserNavbar />
+            <div className="login-form auth-container">
+                <h2>Login</h2>
+                {error && <p className="error-message">{error}</p>}
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" />
+                    </div>
+                    <div className="form-group">
+                        <label>Password:</label>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            <Footer />
         </>
     );
 }

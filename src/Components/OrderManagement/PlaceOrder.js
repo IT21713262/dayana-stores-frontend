@@ -12,7 +12,7 @@ const PlaceOrder = () => {
   useEffect(() => {
     const loadCartFromAPI = async () => {
       try {
-        const response = await fetch('http://localhost:8081/admin/cart/items', {
+        const response = await fetch('http://localhost:8081/user/cart/items', {
           headers: {
             "Authorization": `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const PlaceOrder = () => {
 
   const handlePlaceOrder = async () => {
     try {
-      const response = await fetch('http://localhost:8081/admin/order/checkout', {
+      const response = await fetch('http://localhost:8081/user/order/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

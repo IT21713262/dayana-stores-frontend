@@ -8,11 +8,13 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
     const [isAdmin, setIsAdmin] = useState(localStorage.getItem('role') === 'ADMIN');
+    const [isUser, setIsUser] = useState(localStorage.getItem('role') === 'USER');
     
     // Refresh authentication state
     const refreshAuthState = () => {
         setIsAuthenticated(UserService.isAuthenticated());
         setIsAdmin(UserService.isAdmin());
+        setIsUser(UserService.isUser());
     };
 
     useEffect(() => {
@@ -22,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     return (
         // AuthContext.Provider: Makes the context values available to all child components.
         // (isAuthenticated, isAdmin, refreshAuthState)
-        <AuthContext.Provider value={{ isAuthenticated, isAdmin, refreshAuthState }}>
+        <AuthContext.Provider value={{ isAuthenticated, isAdmin, isUser, refreshAuthState }}>
             {children}
         </AuthContext.Provider>
     );

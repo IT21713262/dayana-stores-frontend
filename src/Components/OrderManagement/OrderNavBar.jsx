@@ -16,7 +16,7 @@ function OrderNavBar() {
   useEffect(() => {
     const fetchCartCount = async () => {
       try {
-        const response = await fetch('http://localhost:8081/admin/cart/items', {
+        const response = await fetch('http://localhost:8081/user/cart/items', {
           headers: {
             "Authorization": `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -35,8 +35,7 @@ function OrderNavBar() {
 
     fetchCartCount();
 
-    const interval = setInterval(fetchCartCount, 5000); // update every 5 seconds
-
+    const interval = setInterval(fetchCartCount, 10000);
     return () => clearInterval(interval);
   }, [token]);
 

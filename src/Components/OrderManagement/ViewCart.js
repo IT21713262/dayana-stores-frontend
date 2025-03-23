@@ -11,7 +11,7 @@ const ViewCart = () => {
 
   const loadCartFromAPI = async () => {
     try {
-      const response = await fetch('http://localhost:8081/cart/items', {
+      const response = await fetch('http://localhost:8081/user/cart/items', {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const ViewCart = () => {
   const handleUpdateQuantity = async (itemId, newQuantity) => {
     try {
       await fetch(
-        `http://localhost:8081/cart/update/${itemId}?quantity=${newQuantity}`,
+        `http://localhost:8081/user/cart/update/${itemId}?quantity=${newQuantity}`,
         {
           method: 'PATCH',
           headers: {
@@ -62,7 +62,7 @@ const ViewCart = () => {
 
   const handleDelete = async (cartId) => {
     try {
-      await fetch(`http://localhost:8081/cart/remove/${cartId}`, {
+      await fetch(`http://localhost:8081/user/cart/remove/${cartId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

@@ -6,7 +6,7 @@ const addToCart = async (product, quantity) => {
 
   try {
     await fetch(
-      `http://localhost:8081/admin/cart/add?productId=${product.id}&quantity=${quantity}`,
+      `http://localhost:8081/user/cart/add?productId=${product.id}&quantity=${quantity}`,
       {
         method: "POST",
         headers: {
