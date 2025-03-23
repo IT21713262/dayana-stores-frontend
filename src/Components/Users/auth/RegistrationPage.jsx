@@ -13,7 +13,7 @@ function RegistrationPage(){
         name: '',
         email: '',
         password: '',
-        role: '',
+        role: 'USER',
         city: ''
     });
 
@@ -74,10 +74,6 @@ function RegistrationPage(){
                     <div className="form-group">
                         <label>Password : </label>
                         <input type="password" name="password" value={formData.password} onChange={handleInputChange} placeholder="Enter a secure password"  required />
-                    </div>
-                    <div className="form-group">
-                        <label>Role (USER or ADMIN) : </label>
-                        <input type="text" name="role" value={formData.role} onChange={handleInputChange} placeholder="Enter USER or ADMIN" required />
                     </div>
                     <div className="form-group">
                         <label>City : </label>
