@@ -1,0 +1,74 @@
+.update-supplier-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  .update-supplier-form {
+    width: 450px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .update-supplier-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #54b168;
+  }
+  
+  .update-supplier-form label {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
+  }
+  
+  .update-supplier-form input,
+  .update-supplier-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .update-button {
+    background-color: #54b168;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .back-button {
+    background-color: white;
+    border: 2px solid #54b168;
+    border-radius: 8px;
+    color: #54b168;
+    padding: 10px 20px;
+    cursor: pointer;
+    flex: 1;
+  }
+  
+  .update-button:hover {
+    background-color: #4a9a5a;
+  }
+  
+  .back-button:hover {
+    background-color: #e8f5e9;
+  }
+  
